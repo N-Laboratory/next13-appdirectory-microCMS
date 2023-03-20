@@ -1,0 +1,61 @@
+.dliFeed {
+  display: inline-block;
+  color: white;
+  line-height: 1;
+  position: relative;
+  width: 0.9em;
+  height: 1em;
+  border: 0.1em solid currentColor;
+  border-radius: 0.2em;
+  box-sizing: content-box;
+  margin-left: 10px;
+  margin-right: -10px;
+  vertical-align: sub;
+}
+
+.dliFeed::before, .dliFeed::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  height: 0.1em;
+  background: currentColor;
+  border-radius: 0.1em;
+}
+
+.dliFeed::before {
+  width: 70%;
+  box-shadow: 0 0.25em 0 0 currentColor;
+}
+
+.dliFeed::after {
+  margin-top: 0.5em;
+  width: 45%;
+}
+
+.dliSearch {
+  display: inline-block;
+  color: #333;
+  line-height: 1;
+  width: 0.7em;
+  height: 0.7em;
+  border: 0.1em solid currentColor;
+  border-radius: 50%;
+  box-sizing: content-box;
+  position: relative;
+  margin-left: 10px;
+  margin-right: -10px;
+}
+
+.dliSearch::before {
+  content: '';
+  position: absolute;
+  top: calc(85.35534% + 0.07071em);
+  left: calc(85.35534% + 0.07071em);
+  width: 0.336em;
+  height: 0.1em;
+  background: currentColor;
+  border-radius: 0 0.1em 0.1em 0;
+  transform: translateY(-50%) rotate(45deg);
+  transform-origin: left center;
+}
