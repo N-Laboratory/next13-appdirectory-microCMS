@@ -15,13 +15,13 @@ export const POST = async(request: NextRequest) => {
   const body = await request.json();
   const result = userSchema.safeParse(body);
 
-  if (!result.success || !result.data?.keyword) {
+  if (!result.success || result.data?.keyword == null) {
     return NextResponse.json(
       {},{ status: 400 },
     );
   }
 
-  const keyword = htmlspecialchars(result.data.keyword);
+  const keyword = htmlspecialchars(result.data.keyword.trim());
   // TODO headlessCMSよりデータ取得するように置き換える
   const articleList: Article[] = [];
   articleList.push({ id: '1', title: 'hoge', overview: 'this is a overview!!!!!!!'});

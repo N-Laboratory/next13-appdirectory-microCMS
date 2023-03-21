@@ -11,7 +11,7 @@ import Link from 'next/link';
 const List = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const keyword = searchParams.get("keyword");
+  const keyword = searchParams.get("keyword") ? searchParams.get("keyword") : "";
   const [articleList, setArticleList] = useState<Article[]>([]);
   const controller = new AbortController();
   const signal = controller.signal;
@@ -45,11 +45,11 @@ const List = () => {
     )
   }
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12 flex-grow">
+    <div className="bg-white pb-6 sm:pb-8 lg:pb-12 flex-grow">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <div className="mb-10 md:mb-16">
-          <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">記事一覧</h2>
-        </div>
+      <div className="mb-10 md:mb-16">
+        <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">記事一覧</h2>
+      </div>
 
         <div className="grid gap-4 sm:grid-cols-2 md:gap-8 xl:grid-cols-3">
           {
