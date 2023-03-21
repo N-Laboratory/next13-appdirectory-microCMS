@@ -44,7 +44,7 @@ const Home = () => {
             </div>
 
             <div style={{ position: 'relative'}} className="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 lg:w-4/5 hidden lg:block">
-              <Image src="/pg.svg" priority fill alt="Photo by Fakurian Design" className="h-full w-full object-cover object-center" />
+              <Image src="/pg.svg" priority fill alt="Technology illustrations by Storyset" className="h-full w-full object-cover object-center" />
               <a className="absolute bottom-0 bg-slate-50" href="https://storyset.com/technology">Technology illustrations by Storyset</a>
             </div>
           </section>
