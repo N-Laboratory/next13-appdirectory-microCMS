@@ -1,8 +1,27 @@
+"use client"
+
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Home = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams()!;
+  const [keyword, setKeyword] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const params = new URLSearchParams(searchParams);
+    params.set("keyword", keyword);
+    router.push("/list?" + params.toString());
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
+  };
+
   return (
     <>
       <div className="bg-white pb-6 sm:pb-8 lg:pb-12">
@@ -17,14 +36,14 @@ const Home = () => {
 
               <p className="mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg">このウェブサイトは日々の業務を通じて学習したIT技術を備忘録も兼ねて掲載しています。</p>
 
-              <div className="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
-                <Link href="#" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">記事一覧<span className={styles.dliFeed}></span></Link>
+              <form className="flex w-full gap-2 sm:max-w-md mr-auto ml-auto lg:mr-0 lg:ml-0" onSubmit={handleSubmit}>
+                <input name="keyword" value={keyword} onChange={handleChange} required placeholder="search word" className="w-full flex-1 rounded border bg-gray-50 px-3 py-2 text-gray-800 placeholder-gray-500 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                <button className="inline-block rounded bg-indigo-500 px-8 py-2 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">検索<span className={styles.dliSearch}></span></button>
+              </form>
 
-                <Link href="#" className="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">記事検索<span className={styles.dliSearch}></span></Link>
-              </div>
             </div>
 
-            <div style={{ position: 'relative'}} className="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 lg:w-full hidden lg:block">
+            <div style={{ position: 'relative'}} className="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 lg:w-4/5 hidden lg:block">
               <Image src="/pg.svg" priority fill alt="Photo by Fakurian Design" className="h-full w-full object-cover object-center" />
               <a className="absolute bottom-0 bg-slate-50" href="https://storyset.com/technology">Technology illustrations by Storyset</a>
             </div>
@@ -129,7 +148,7 @@ const Home = () => {
       </div>
 
       <div className="text-center">
-        <Link href="#" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">記事一覧<span className={styles.dliFeed}></span></Link>
+        <Link href="/list" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">記事一覧<span className={styles.dliFeed}></span></Link>
       </div>
 
       <div className="mt-4 bg-white py-6 sm:py-8 lg:py-12">
