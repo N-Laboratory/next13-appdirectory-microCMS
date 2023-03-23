@@ -11,7 +11,7 @@ const About = () => {
           <div className="max-w-md text-gray-600 lg:text-lg">日々の業務で経験したスキルや独学で学んだことのアウトプットとしてこのサイトに記事を随時投稿していくつもりです。</div>
 
           <div className="flex items-center gap-2 flex-row md:gap-3">
-            <div style={{ position: 'relative'}} className="h-12 w-12 overflow-hidden rounded-full bg-gray-100 shadow-lg md:h-14 md:w-14">
+            <div className="relative h-12 w-12 overflow-hidden rounded-full bg-gray-100 shadow-lg md:h-14 md:w-14">
               <Image src="/me.jpeg" priority sizes="(max-width: 768px) 100vw" fill alt="Photo by Naoki Nakanishi" className="h-full w-full object-cover object-center" />
             </div>
             <div>
