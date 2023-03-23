@@ -23,7 +23,7 @@ const Header = () => {
 
             <nav className="hidden gap-12 sm:flex">
               <Link href="/" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Home</Link>
-              <Link href="/list" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">All Articles</Link>
+              <Link href="/list" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Articles</Link>
               <Link href="/search" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Search</Link>
               <Link href="/about" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">About Me</Link>
             </nav>
