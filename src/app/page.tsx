@@ -24,9 +24,9 @@ const Home = () => {
 
   return (
     <div className="flex-grow">
-      <div className="bg-white pb-6 sm:pb-8 lg:pb-12">
-        <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-          <section className="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row">
+      <div className={`${styles.eyecatch} bg-white pb-14 sm:pb-8 lg:pb-12`}>
+        <div className="w-full mx-auto max-w-screen-2xl px-4 md:px-8">
+          <section className="flex flex-col justify-center gap-6 sm:gap-10 md:gap-16 lg:flex-row">
             <div className="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24">
               <p className="mb-4 font-semibold text-indigo-500 md:mb-6 md:text-lg xl:text-xl">N-Laboratory</p>
 
@@ -41,7 +41,7 @@ const Home = () => {
 
             </div>
 
-            <div style={{ position: 'relative'}} className="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 lg:w-4/5 hidden lg:block">
+            <div className="relative h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 lg:w-4/5 hidden lg:block">
               <Image src="/pg.svg" priority fill alt="Technology illustrations by Storyset" className="h-full w-full object-cover object-center" />
               <a className="absolute bottom-0 bg-slate-50" href="https://storyset.com/technology">Technology illustrations by Storyset</a>
             </div>
@@ -157,7 +157,7 @@ const Home = () => {
 
           <div className="grid mr-auto ml-auto lg:w-2/4">
             <div className="flex flex-col items-center rounded-lg bg-gray-100 p-4 lg:p-8">
-              <div style={{ position: 'relative'}} className="mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32">
+              <div className="relative mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32">
                 <Image src="/me.jpeg" sizes="(max-width: 768px) 100vw" priority fill alt="Photo by Naoki Nakanishi" className="h-full w-full object-cover object-center" />
               </div>
 

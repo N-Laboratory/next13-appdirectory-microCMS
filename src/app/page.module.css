@@ -59,3 +59,12 @@
   transform: translateY(-50%) rotate(45deg);
   transform-origin: left center;
 }
+
+@media screen and (min-width: 768px) {
+  .eyecatch {
+    display: flex;
+    height: calc(100vh);
+    align-items: center;
+    margin-top: -85px;
+  }
+}
