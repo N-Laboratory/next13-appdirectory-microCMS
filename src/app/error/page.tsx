@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 const Error = () => {
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12 flex-grow">
-      <div className="mx-auto max-w-screen-lg px-4 md:px-8">
+    <div className="center-contents bg-white py-6 sm:py-8 lg:py-12 flex-grow">
+      <div className="w-full mx-auto max-w-screen-lg px-4 md:px-8">
         <div className="grid gap-8 sm:grid-cols-2">
           <div className="flex flex-col items-center justify-center sm:items-start md:py-24 lg:py-32">
             <p className="mb-4 text-sm font-semibold uppercase text-indigo-500 md:text-base">Error</p>
@@ -16,7 +16,7 @@ const Error = () => {
           </div>
 
           <div className="relative h-80 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto hidden sm:block">
-            <Image src="/error.svg" fill loading="lazy" alt="Technology illustrations by Storyset" className="absolute inset-0 h-full w-full object-cover object-center" />
+            <Image src="/error.svg" priority fill alt="Technology illustrations by Storyset" className="absolute inset-0 h-full w-full object-cover object-center" />
             <a className="absolute bottom-0 bg-slate-50" href="https://storyset.com/technology">Technology illustrations by Storyset</a>
           </div>
         </div>

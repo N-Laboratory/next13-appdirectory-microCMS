@@ -95,6 +95,13 @@ a {
   text-decoration: none;
 }
 
+.center-contents {
+  display: flex;
+  height: calc(100vh);
+  align-items: center;
+  margin-top: -150px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
