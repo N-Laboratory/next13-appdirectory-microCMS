@@ -32,13 +32,16 @@ const List = () => {
       <div className="mb-10 md:mb-16">
         <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">記事一覧</h2>
       </div>
-      { data && data.articleList && data.articleList.length ?
+      { data && data.articleList && data.articleList.contents.length ?
         <div className="grid gap-4 sm:grid-cols-2 md:gap-8 xl:grid-cols-3">
-          { data.articleList.map((article) => (
+          { data.articleList.contents.map((article) => (
               <div key={article.id} className="flex flex-col rounded-lg border p-4 md:p-6 hover:bg-slate-200">
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">{article.title}</h3>
                 <p className="mb-4 text-gray-500">{article.overview}</p>
-                <Link href={`/articles/${encodeURIComponent(article.title)}`} className="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                <div className="flex justify-between">
+                  <Link href={`/articles/${encodeURIComponent(article.id)}`} className="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                  <p className="mt-auto text-gray-500">{article.createdDate}</p>
+                </div>
               </div>
             ))
           }
