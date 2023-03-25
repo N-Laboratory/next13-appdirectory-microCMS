@@ -1,0 +1,24 @@
+.code {
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: rgb(99 102 241 / 7%);
+  color: #000000;
+  overflow: visible;
+}
+
+.image {
+  position: relative !important;
+  height: auto !important;
+  display: inline !important;
+}
+
+.linkColor {
+  color: rgb(99 102 241);
+  text-decoration: underline;
+}
+
+.linkColor:hover {
+  color: rgb(9 13 255);
+}
