@@ -39,7 +39,7 @@ const List = () => {
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">{article.title}</h3>
                 <p className="mb-4 text-gray-500">{article.overview}</p>
                 <div className="flex justify-between">
-                  <Link href={`/articles/${encodeURIComponent(article.id)}`} className="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                  <Link prefetch={false} href={`/articles/${encodeURIComponent(article.id)}`} className="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
                   <p className="mt-auto text-gray-500">{article.createdDate}</p>
                 </div>
               </div>

@@ -68,7 +68,7 @@ const Home = () => {
               <div>
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">Growth</h3>
                 <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
               </div>
             </div>
 
@@ -82,7 +82,7 @@ const Home = () => {
               <div>
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">Security</h3>
                 <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
               </div>
             </div>
 
@@ -96,7 +96,7 @@ const Home = () => {
               <div>
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">Cloud</h3>
                 <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
               </div>
             </div>
 
@@ -110,7 +110,7 @@ const Home = () => {
               <div>
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">Speed</h3>
                 <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
               </div>
             </div>
 
@@ -124,7 +124,7 @@ const Home = () => {
               <div>
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">Support</h3>
                 <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
               </div>
             </div>
 
@@ -138,7 +138,7 @@ const Home = () => {
               <div>
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">Dark Mode</h3>
                 <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
               </div>
             </div>
           </div>
@@ -146,7 +146,7 @@ const Home = () => {
       </div>
 
       <div className="text-center">
-        <Link href="/list" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">記事一覧<span className={styles.dliFeed}></span></Link>
+        <Link prefetch={false} href="/list" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">記事一覧<span className={styles.dliFeed}></span></Link>
       </div>
 
       <div className="mt-4 bg-white py-6 sm:py-8 lg:py-12">
