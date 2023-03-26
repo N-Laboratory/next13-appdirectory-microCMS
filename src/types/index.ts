@@ -10,5 +10,6 @@ export type Article = {
   title: string;
   detail: string;
   overview: string;
+  svgName: string;
   createdDate: string;
 };

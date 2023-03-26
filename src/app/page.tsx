@@ -79,10 +79,8 @@ const Home = () => {
             { data && data.articleList && data.articleList.contents.length ?
               data.articleList.contents.map((article) => (
                 <div key={article.id} className="flex gap-4 md:gap-6">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
+                  <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
+                    <Image src={`/${article.svgName}.svg`} priority fill alt="svg icon" className="px-1.5 h-6 w-6" />
                   </div>
 
                   <div>
