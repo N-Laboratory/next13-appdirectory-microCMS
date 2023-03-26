@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-white">
+      <div className="bg-white z-50">
         <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
           <header className="mb-8 flex items-center justify-end sm:justify-center py-4 md:mb-12 md:py-8 xl:mb-16 relative">
             <Link prefetch={false} href="/" className="text-black-800 inline-flex items-center gap-2.5 text-4xl sm:text-2xl font-bold md:text-3xl absolute left-0" aria-label="logo">
