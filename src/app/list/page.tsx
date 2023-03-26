@@ -7,6 +7,7 @@ import axios from 'axios';
 import Error from '../error/page';
 import Link from 'next/link';
 import { ArticleListResponse } from '../api/list/route';
+import styles from './page.module.css'
 
 const fetcher = async (url: string, keyword: string) => await axios.post(url, { keyword }).then(res => res.data)
 
@@ -33,11 +34,11 @@ const List = () => {
         <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">記事一覧</h2>
       </div>
       { data && data.articleList && data.articleList.contents.length ?
-        <div className="grid gap-4 sm:grid-cols-2 md:gap-8 xl:grid-cols-3">
+        <div className={`${styles.articleList} grid gap-4 md:gap-8 `}>
           { data.articleList.contents.map((article) => (
               <div key={article.id} className="flex flex-col rounded-lg border p-4 md:p-6 hover:bg-slate-200">
                 <h3 className="mb-2 text-lg font-semibold md:text-xl">{article.title}</h3>
-                <p className="mb-4 text-gray-500">{article.overview}</p>
+                <p title={article.overview} className={`${styles.overview} mb-4 text-gray-500`}>{article.overview}</p>
                 <div className="flex justify-between">
                   <Link prefetch={false} href={`/articles/${encodeURIComponent(article.id)}`} className="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
                   <p className="mt-auto text-gray-500">{article.createdDate}</p>
