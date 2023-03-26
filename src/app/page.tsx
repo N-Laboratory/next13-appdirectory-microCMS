@@ -5,6 +5,13 @@ import styles from './page.module.css'
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import axios from 'axios';
+import useSWRImmutable  from "swr/immutable";
+import { ArticleListResponse } from './api/list/route';
+import Error from './error/page';
+import Loading from './loading';
+
+const fetcher = async (url: string, keyword: string) => await axios.post(url, { keyword }).then(res => res.data)
 
 const Home = () => {
   const router = useRouter();
@@ -18,9 +25,21 @@ const Home = () => {
     router.push("/list?" + params.toString());
   }
 
+  const { data, error, isLoading } = useSWRImmutable<ArticleListResponse>(["/api/list", keyword], ([url, keyword]: [url: string, keyword: string]) => fetcher(url, keyword), {
+    shouldRetryOnError: false,
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
+
+  if (error) {
+    return <Error/>;
+  }
+
+  if (isLoading) {
+    return <Loading/>;
+  }
 
   return (
     <div className="flex-grow">
@@ -53,100 +72,34 @@ const Home = () => {
         <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
           <div className="mb-10 md:mb-16">
             <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">About articles in this web site</h2>
-
             <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">クラウドサービスに関してはAWS、CMSはWordPress・Strapi・microCMS、プログラミング言語はJava・Javascript、フレームワークはSpring Boot・Nuxtを主に取り扱っています。</p>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 md:gap-12 xl:grid-cols-3 xl:gap-16">
-            <div className="flex gap-4 md:gap-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
+          <div className={`${styles.scrollArea} h-80 overflow-y-scroll h-96 sm:h-80 grid gap-8 sm:grid-cols-2 md:gap-12 xl:gap-16`}>
+            { data && data.articleList && data.articleList.contents.length ?
+              data.articleList.contents.map((article) => (
+                <div key={article.id} className="flex gap-4 md:gap-6">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                  </div>
 
-              <div>
-                <h3 className="mb-2 text-lg font-semibold md:text-xl">Growth</h3>
-                <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
-              </div>
-            </div>
-
-            <div className="flex gap-4 md:gap-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-
-              <div>
-                <h3 className="mb-2 text-lg font-semibold md:text-xl">Security</h3>
-                <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
-              </div>
-            </div>
-
-            <div className="flex gap-4 md:gap-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                </svg>
-              </div>
-
-              <div>
-                <h3 className="mb-2 text-lg font-semibold md:text-xl">Cloud</h3>
-                <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
-              </div>
-            </div>
-
-            <div className="flex gap-4 md:gap-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-
-              <div>
-                <h3 className="mb-2 text-lg font-semibold md:text-xl">Speed</h3>
-                <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
-              </div>
-            </div>
-
-            <div className="flex gap-4 md:gap-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </div>
-
-              <div>
-                <h3 className="mb-2 text-lg font-semibold md:text-xl">Support</h3>
-                <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
-              </div>
-            </div>
-
-            <div className="flex gap-4 md:gap-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              </div>
-
-              <div>
-                <h3 className="mb-2 text-lg font-semibold md:text-xl">Dark Mode</h3>
-                <p className="mb-2 text-gray-500">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
-                <Link prefetch={false} href="#" className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
-              </div>
-            </div>
+                  <div>
+                    <h3 className="mb-2 text-lg font-semibold md:text-xl">{article.title}</h3>
+                    <p title={article.overview} className={`${styles.overview} mb-2 text-gray-500`}>{article.overview}</p>
+                    <div className="flex justify-between">
+                      <Link prefetch={false} href={`/articles/${encodeURIComponent(article.id)}`}  className="font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</Link>
+                      <p className="pr-3.5 mt-auto text-gray-500">{article.createdDate}</p>
+                    </div>
+                  </div>
+                </div>
+                ))
+              :
+              <p className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">記事が存在しません</p>
+            }
           </div>
         </div>
-      </div>
-
-      <div className="text-center">
-        <Link prefetch={false} href="/list" className="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">記事一覧<span className={styles.dliFeed}></span></Link>
       </div>
 
       <div className="mt-4 bg-white py-6 sm:py-8 lg:py-12">

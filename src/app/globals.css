@@ -90,6 +90,29 @@ body {
   background: rgb(var(--foreground-rgb));
 }
 
+body {
+  --sb-track-color: #232E33;
+  --sb-thumb-color: #6366f1;
+  --sb-size: 10px;
+
+  scrollbar-color: var(--sb-thumb-color)
+                   var(--sb-track-color);
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
