@@ -24,7 +24,7 @@ export const POST = async(request: NextRequest) => {
   }
 
   const keyword = htmlspecialchars(result.data.keyword.trim());
-  const articleList: ArticleList = await client.get({ endpoint: "article", queries: { q: keyword } });
+  const articleList: ArticleList = await client.get({ endpoint: "article", queries: { q: encodeURI(keyword) } });
 
   return NextResponse.json(
     {

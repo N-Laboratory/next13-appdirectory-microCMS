@@ -4,9 +4,10 @@ import { Article } from "@/types";
 import parse, { domToReact, HTMLReactParserOptions, Element, attributesToProps } from 'html-react-parser'
 import Error from '../../error/page';
 import styles from './page.module.css'
+import { htmlspecialchars } from '@/features/common/sanitize';
 
 async function getArticle(id: string) {
-  const article: Article = await client.get({ endpoint: "article", contentId: id});
+  const article: Article = await client.get({ endpoint: "article", contentId: htmlspecialchars(id)});
   return article;
 }
 
