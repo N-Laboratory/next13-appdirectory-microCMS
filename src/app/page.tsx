@@ -19,7 +19,7 @@ const Home = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const params = new URLSearchParams(searchParams);
-    params.set("keyword", e.target.keyword.value);
+    params.set("keyword", e.currentTarget.keyword.value);
     router.push("/list?" + params.toString());
   }
 
