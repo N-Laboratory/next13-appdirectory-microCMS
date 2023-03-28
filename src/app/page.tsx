@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link';
-import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import useSWRImmutable  from "swr/immutable";
@@ -16,22 +15,17 @@ const fetcher = async (url: string, keyword: string) => await axios.post(url, { 
 const Home = () => {
   const router = useRouter();
   const searchParams = useSearchParams()!;
-  const [keyword, setKeyword] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const params = new URLSearchParams(searchParams);
-    params.set("keyword", keyword);
+    params.set("keyword", e.target.keyword.value);
     router.push("/list?" + params.toString());
   }
 
-  const { data, error, isLoading } = useSWRImmutable<ArticleListResponse>(["/api/list", keyword], ([url, keyword]: [url: string, keyword: string]) => fetcher(url, keyword), {
+  const { data, error, isLoading } = useSWRImmutable<ArticleListResponse>(["/api/list", ""], ([url, keyword]: [url: string, keyword: string]) => fetcher(url, keyword), {
     shouldRetryOnError: false,
   });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
-  };
 
   if (error) {
     return <Error/>;
@@ -54,7 +48,7 @@ const Home = () => {
               <p className="mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg">このウェブサイトは日々の業務を通じて学習したIT技術を備忘録も兼ねて掲載しています。</p>
 
               <form className="flex w-full gap-2 sm:max-w-md mr-auto ml-auto lg:mr-0 lg:ml-0" onSubmit={handleSubmit}>
-                <input name="keyword" value={keyword} onChange={handleChange} required placeholder="search word" className="w-full flex-1 rounded border bg-gray-50 px-3 py-2 text-gray-800 placeholder-gray-500 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                <input name="keyword" required placeholder="search word" className="w-full flex-1 rounded border bg-gray-50 px-3 py-2 text-gray-800 placeholder-gray-500 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                 <button className="inline-block rounded bg-indigo-500 px-8 py-2 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">検索<span className={styles.dliSearch}></span></button>
               </form>
 
