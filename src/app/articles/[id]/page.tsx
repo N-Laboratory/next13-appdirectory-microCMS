@@ -7,7 +7,9 @@ import styles from './page.module.css'
 import { htmlspecialchars } from '@/features/common/sanitize';
 
 async function getArticle(id: string) {
-  const article: Article = await client.get({ endpoint: "article", contentId: htmlspecialchars(id)});
+  const article = await client.get<Article>({ endpoint: "article", contentId: htmlspecialchars(id)})
+    .then((res) => res)
+    .catch((err) => console.error(err));
   return article;
 }
 

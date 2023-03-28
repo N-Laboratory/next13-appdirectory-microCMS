@@ -16,22 +16,24 @@ export type ArticleListResponse = {
 export const POST = async(request: NextRequest) => {
   const body = await request.json();
   const result = userSchema.safeParse(body);
+  let apiResStatus = 200
 
   if (!result.success) {
+    apiResStatus = 400
     return NextResponse.json(
-      {},{ status: 400 },
+      {}, { status: apiResStatus },
     );
   }
 
   const keyword = htmlspecialchars(result.data.keyword.trim());
-  const articleList: ArticleList = await client.get({ endpoint: "article", queries: { q: encodeURI(keyword) } });
-
+  const articleList = await client.getList<ArticleList>({ endpoint: "article", queries: { q: keyword } })
+    .then((res) => res)
+    .catch((err) => {
+        apiResStatus = 500;
+        console.error(err);
+      }
+    );
   return NextResponse.json(
-    {
-      articleList,
-    },
-    {
-      status: 200,
-    },
+    { articleList, }, { status: apiResStatus },
   );
 }
