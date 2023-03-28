@@ -1,4 +1,5 @@
-.atomSpinner, .atomSpinner * {
+.atomSpinner,
+.atomSpinner * {
   box-sizing: border-box;
 }
 

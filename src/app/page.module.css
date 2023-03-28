@@ -13,7 +13,8 @@
   vertical-align: sub;
 }
 
-.dliFeed::before, .dliFeed::after {
+.dliFeed::before,
+.dliFeed::after {
   content: '';
   position: absolute;
   top: 20%;
@@ -62,11 +63,10 @@
 
 .scrollArea {
   height: 320px;
-  --sb-track-color: #232E33;
+  --sb-track-color: #232e33;
   --sb-thumb-color: #6366f1;
   --sb-size: 10px;
-  scrollbar-color: var(--sb-thumb-color) 
-                   var(--sb-track-color);
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
 }
 
 .scrollArea::-webkit-scrollbar {

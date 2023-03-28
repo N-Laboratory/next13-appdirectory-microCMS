@@ -1,8 +1,8 @@
-import styles from "./loading.module.css"
+import styles from './loading.module.css'
 
 const Loading = () => {
   return (
-    <div className="absolute w-full	bg-white z-50">
+    <div className='absolute w-full	bg-white z-50'>
       <div className={styles.atomSpinner}>
         <div className={styles.spinnerInner}>
           <div className={styles.spinnerLine}></div>

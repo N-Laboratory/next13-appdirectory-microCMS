@@ -1,15 +1,15 @@
 export type ArticleList = {
   contents: Article[]
-  totalCount?: number;
-  offset?: number;
-  limit?: number;
-};
+  totalCount?: number
+  offset?: number
+  limit?: number
+}
 
 export type Article = {
-  id: string;
-  title: string;
-  detail: string;
-  overview: string;
-  svgName: string;
-  createdDate: string;
-};
+  id: string
+  title: string
+  detail: string
+  overview: string
+  svgName: string
+  createdDate: string
+}
