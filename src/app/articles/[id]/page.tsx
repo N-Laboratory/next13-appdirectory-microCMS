@@ -37,8 +37,7 @@ const replace: HTMLReactParserOptions  = {
         return <a className={`${styles.linkColor}`} {...props}>{domToReact(domNode.children)}</a>;
       }
       if (domNode.name === 'img') {
-        // eslint-disable-next-line jsx-a11y/alt-text
-        return <Image className={`${styles.image} py-3`} fill {...props} />;
+        return <Image src={props.src} alt={ props.alt} className={`${styles.image} py-3`} fill {...props} />;
       }
     }
   }
