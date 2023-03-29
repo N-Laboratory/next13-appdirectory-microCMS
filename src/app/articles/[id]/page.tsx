@@ -10,6 +10,7 @@ import parse, {
 import Error from '../../error/page'
 import styles from './page.module.css'
 import { htmlspecialchars } from '@/features/common/sanitize'
+import { notFound } from 'next/navigation'
 
 async function getArticle(id: string) {
   const article = await client
@@ -90,7 +91,8 @@ const replace: HTMLReactParserOptions = {
 const Articles = async ({ params }: { params: { id: string } }) => {
   const article = await getArticle(params.id)
   if (!article || !article.detail) {
-    return <Error />
+    // notFound関数をコールするとnot-found.tsxが呼び出される
+    notFound()
   }
 
   return (
