@@ -9,6 +9,7 @@ import parse, {
 } from 'html-react-parser'
 import styles from './page.module.css'
 import { htmlspecialchars } from '@/features/common/sanitize'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 async function getArticle(id: string) {
@@ -17,6 +18,20 @@ async function getArticle(id: string) {
     .then((res) => res)
     .catch((err) => console.error(err))
   return article
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const article = await getArticle(params.id)
+  if (!article) {
+    return {
+      title: '記事が見つかりません',
+      description: '記事が見つかりません',
+    }
+  }
+  return {
+    title: `${article.title} | N-LAB`,
+    description: article.overview,
+  }
 }
 
 // microCMSから取得したHTMLをJSXに変換する際にtailwindのスタイルを適用する
