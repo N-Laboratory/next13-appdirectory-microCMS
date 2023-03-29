@@ -7,7 +7,6 @@ import parse, {
   Element,
   attributesToProps,
 } from 'html-react-parser'
-import Error from '../../error/page'
 import styles from './page.module.css'
 import { htmlspecialchars } from '@/features/common/sanitize'
 import { notFound } from 'next/navigation'
@@ -75,13 +74,17 @@ const replace: HTMLReactParserOptions = {
       }
       if (domNode.name === 'img') {
         return (
-          <Image
-            src={props.src}
-            alt={props.alt}
-            className={`${styles.image} py-3`}
-            fill
-            {...props}
-          />
+          <span className='relative block'>
+            <Image
+              src={props.src}
+              alt={props.alt}
+              className={`${styles.image} pt-3`}
+              fill
+              priority
+              sizes='(max-width: 768px) 100vw'
+              {...props}
+            />
+          </span>
         )
       }
     }
