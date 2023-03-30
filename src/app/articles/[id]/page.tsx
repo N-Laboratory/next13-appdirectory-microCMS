@@ -100,7 +100,7 @@ const replace: HTMLReactParserOptions = {
 
 const Articles = async ({ params }: { params: { id: string } }) => {
   const article = await getArticle(htmlspecialchars(params.id))
-  if (!article || !article.detail) {
+  if (!article) {
     // notFound関数をコールするとnot-found.tsxが呼び出される
     notFound()
   }
@@ -108,7 +108,7 @@ const Articles = async ({ params }: { params: { id: string } }) => {
   return (
     <div className='bg-white py-6 sm:py-8 lg:py-12 flex-grow'>
       <div className='mx-auto max-w-screen-md px-4 md:px-8 leading-7'>
-        {parse(article.detail, replace)}
+        { article.detail ? parse(article.detail, replace) : ''}
       </div>
     </div>
   )
