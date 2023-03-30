@@ -1,44 +1,27 @@
-'use client'
-
+import { client } from '@/libs/microcms/client'
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
-import axios from 'axios'
-import useSWRImmutable from 'swr/immutable'
-import { ArticleListResponse } from './api/list/route'
-import Error from './error/page'
-import Loading from './loading'
+import Form from '@/features/home/components/Form'
+import { ArticleList } from '@/types'
 
-const fetcher = async (url: string, keyword: string) =>
-  await axios.post(url, { keyword }).then((res) => res.data)
+export const metadata = {
+  title: 'Home | N-LAB',
+  description: 'このウェブサイトは日々の業務を通じて学習したIT技術を備忘録も兼ねて掲載しています。',
+}
 
-const Home = () => {
-  const router = useRouter()
-  const searchParams = useSearchParams()!
+async function getArticle() {
+  const articleList = await client
+    .get<ArticleList>({ endpoint: 'article' })
+    .then((res) => res)
+    .catch((err) => {
+      console.error(err)
+    })
+  return articleList
+}
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const params = new URLSearchParams(searchParams)
-    params.set('keyword', e.currentTarget.keyword.value)
-    router.push('/list?' + params.toString())
-  }
-
-  const { data, error, isLoading } = useSWRImmutable<ArticleListResponse>(
-    ['/api/list', ''],
-    ([url, keyword]: [url: string, keyword: string]) => fetcher(url, keyword),
-    {
-      shouldRetryOnError: false,
-    },
-  )
-
-  if (error) {
-    return <Error />
-  }
-
-  if (isLoading) {
-    return <Loading />
-  }
+const Home = async () => {
+  const articleList = await getArticle()
 
   return (
     <div className='flex-grow'>
@@ -57,21 +40,7 @@ const Home = () => {
               <p className='mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg'>
                 このウェブサイトは日々の業務を通じて学習したIT技術を備忘録も兼ねて掲載しています。
               </p>
-
-              <form
-                className='flex w-full gap-2 sm:max-w-md mr-auto ml-auto lg:mr-0 lg:ml-0'
-                onSubmit={handleSubmit}
-              >
-                <input
-                  name='keyword'
-                  required
-                  placeholder='search word'
-                  className='w-full flex-1 rounded border bg-gray-50 px-3 py-2 text-gray-800 placeholder-gray-500 outline-none ring-indigo-300 transition duration-100 focus:ring'
-                />
-                <button className='inline-block rounded bg-indigo-500 px-8 py-2 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base'>
-                  検索<span className={styles.dliSearch}></span>
-                </button>
-              </form>
+              <Form />
             </div>
 
             <div className='relative h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 lg:w-4/5 hidden lg:block'>
@@ -105,8 +74,8 @@ const Home = () => {
           <div
             className={`${styles.scrollArea} h-80 overflow-y-scroll h-96 sm:h-80 grid gap-8 sm:grid-cols-2 md:gap-12 xl:gap-16`}
           >
-            {data && data.articleList && data.articleList.contents.length ? (
-              data.articleList.contents.map((article) => (
+            {articleList && articleList.contents.length ? (
+              articleList.contents.map((article) => (
                 <div key={article.id} className='flex gap-4 md:gap-6'>
                   <div className='relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl'>
                     <Image
@@ -118,7 +87,7 @@ const Home = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className='w-full'>
                     <h3 className='mb-2 text-lg font-semibold md:text-xl'>{article.title}</h3>
                     <p title={article.overview} className={`${styles.overview} mb-2 text-gray-500`}>
                       {article.overview}
@@ -127,7 +96,7 @@ const Home = () => {
                       <Link
                         prefetch={false}
                         href={`/articles/${encodeURIComponent(article.id)}`}
-                        className='font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700'
+                        className='mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700'
                       >
                         More
                       </Link>
