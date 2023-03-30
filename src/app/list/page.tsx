@@ -19,12 +19,10 @@ const List = () => {
   const keyword = searchParams.get('keyword') ?? ''
   const [index, setIndex] = useState(0)
 
-  const handlePreviousClick = () => {
-    setIndex(index - 1)
-  }
-
-  const handleNextClick = () => {
-    setIndex(index + 1)
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const nextIndex = e.currentTarget.name === 'next' ? index + 1 : index - 1
+    setIndex(nextIndex)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const { data, error, isLoading } = useSWRImmutable<ArticleListResponse>(
@@ -35,16 +33,16 @@ const List = () => {
     },
   )
 
-  const articleTotal = data?.articleList.totalCount ?? 1
-  const pageTotal = Math.ceil(articleTotal / 6)
+  const articleTotal = data?.articleList?.totalCount ?? 1
+  const pageTotal = Math.ceil(articleTotal / 5)
   const articleListPerPage: Article[][] = []
   if (data && data.articleList && data.articleList.contents.length) {
     let start = 0
-    let end = 6
+    let end = 5
     for (let index = 0; index < pageTotal; index++) {
       articleListPerPage.push(data.articleList.contents.slice(start, end))
-      start += 6
-      end += 6
+      start += 5
+      end += 5
     }
   }
 
@@ -58,9 +56,9 @@ const List = () => {
 
   return (
     <div className='bg-white pb-6 sm:pb-8 lg:pb-12 flex-grow'>
-      <div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
+      <div className='mx-auto max-w-screen-md px-4 md:px-8'>
         {articleListPerPage.length ? (
-          <div className={`${styles.articleList} grid gap-4 md:gap-8 `}>
+          <div className='grid gap-4'>
             {articleListPerPage[index].map((article) => (
               <div
                 key={article.id}
@@ -90,8 +88,16 @@ const List = () => {
         )}
 
         <div className='flex px-3 my-12 justify-between'>
-          {index != 0 && <button onClick={handlePreviousClick}>&lt; Previous</button>}
-          {index != pageTotal - 1 && <button onClick={handleNextClick}>Next &gt;</button>}
+          {index != 0 && (
+            <button name='previous' onClick={handleClick}>
+              &lt; Previous
+            </button>
+          )}
+          {index != pageTotal - 1 && (
+            <button name='next' onClick={handleClick}>
+              Next &gt;
+            </button>
+          )}
         </div>
       </div>
     </div>
