@@ -3,7 +3,7 @@ import { htmlspecialchars } from '@/features/common/sanitize'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { ArticleList } from '@/types'
-import { client } from '@/libs/microcms/client'
+import { client, getArticleListByKeyword } from '@/libs/microcms/client'
 
 const userSchema = z.object({
   keyword: z.string(),
@@ -24,12 +24,10 @@ export const POST = async (request: NextRequest) => {
   }
 
   const keyword = htmlspecialchars(result.data.keyword.trim())
-  const articleList = await client
-    .getList<ArticleList>({ endpoint: 'article', queries: { q: keyword } })
-    .then((res) => res)
-    .catch((err) => {
-      apiResStatus = 500
-      console.error(err)
-    })
+  const articleList = await getArticleListByKeyword(keyword)
+  if (!articleList) {
+    apiResStatus = 500
+  }
+
   return NextResponse.json({ articleList }, { status: apiResStatus })
 }

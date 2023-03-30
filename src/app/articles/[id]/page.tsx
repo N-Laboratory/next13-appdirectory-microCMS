@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { client } from '@/libs/microcms/client'
+import { getArticle } from '@/libs/microcms/client'
 import { Article } from '@/types'
 import parse, {
   domToReact,
@@ -12,16 +12,8 @@ import { htmlspecialchars } from '@/features/common/sanitize'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-async function getArticle(id: string) {
-  const article = await client
-    .getListDetail<Article>({ endpoint: 'article', contentId: htmlspecialchars(id) })
-    .then((res) => res)
-    .catch((err) => console.error(err))
-  return article
-}
-
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const article = await getArticle(params.id)
+  const article = await getArticle(htmlspecialchars(params.id))
   if (!article) {
     return {
       title: '記事が見つかりません',
@@ -107,7 +99,7 @@ const replace: HTMLReactParserOptions = {
 }
 
 const Articles = async ({ params }: { params: { id: string } }) => {
-  const article = await getArticle(params.id)
+  const article = await getArticle(htmlspecialchars(params.id))
   if (!article || !article.detail) {
     // notFound関数をコールするとnot-found.tsxが呼び出される
     notFound()

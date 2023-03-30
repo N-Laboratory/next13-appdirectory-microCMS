@@ -1,27 +1,16 @@
-import { client } from '@/libs/microcms/client'
+import { getArticleList } from '@/libs/microcms/client'
 import Image from 'next/image'
 import styles from './page.module.css'
 import Link from 'next/link'
 import Form from '@/features/home/components/Form'
-import { ArticleList } from '@/types'
 
 export const metadata = {
   title: 'Home | N-LAB',
   description: 'このウェブサイトは日々の業務を通じて学習したIT技術を備忘録も兼ねて掲載しています。',
 }
 
-async function getArticle() {
-  const articleList = await client
-    .get<ArticleList>({ endpoint: 'article' })
-    .then((res) => res)
-    .catch((err) => {
-      console.error(err)
-    })
-  return articleList
-}
-
 const Home = async () => {
-  const articleList = await getArticle()
+  const articleList = await getArticleList()
 
   return (
     <div className='flex-grow'>
