@@ -8,14 +8,25 @@ import Error from '../error/page'
 import Link from 'next/link'
 import { ArticleListResponse } from '../api/list/route'
 import styles from './page.module.css'
+import { Article } from '@/types'
+import { useState } from 'react'
 
 const fetcher = async (url: string, keyword: string) =>
   await axios.post(url, { keyword }).then((res) => res.data)
 
-// TODO ページング機能を実装する
 const List = () => {
   const searchParams = useSearchParams()
   const keyword = searchParams.get('keyword') ?? ''
+  const [index, setIndex] = useState(0)
+
+  const handlePreviousClick = () => {
+    setIndex(index - 1)
+  }
+
+  const handleNextClick = () => {
+    setIndex(index + 1)
+  }
+
   const { data, error, isLoading } = useSWRImmutable<ArticleListResponse>(
     ['/api/list', keyword],
     ([url, keyword]: [url: string, keyword: string]) => fetcher(url, keyword),
@@ -24,6 +35,19 @@ const List = () => {
     },
   )
 
+  const articleTotal = data?.articleList.totalCount ?? 1
+  const pageTotal = Math.ceil(articleTotal / 6)
+  const articleListPerPage: Article[][] = []
+  if (data && data.articleList && data.articleList.contents.length) {
+    let start = 0
+    let end = 6
+    for (let index = 0; index < pageTotal; index++) {
+      articleListPerPage.push(data.articleList.contents.slice(start, end))
+      start += 6
+      end += 6
+    }
+  }
+
   if (error) {
     return <Error />
   }
@@ -31,21 +55,13 @@ const List = () => {
   if (isLoading) {
     return <Loading />
   }
-  // TODO alt属性の確認　画像をラインセンスふりーで置き換え　404エラーページ作成
-  // libsで定義したprocess.env.apikeyがビルド時に漏洩していないか確認
-  // 正しくサニタイズできているか
-  // ページング実装
+
   return (
     <div className='bg-white pb-6 sm:pb-8 lg:pb-12 flex-grow'>
       <div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
-        <div className='mb-10 md:mb-16'>
-          <h2 className='mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl'>
-            記事一覧
-          </h2>
-        </div>
-        {data && data.articleList && data.articleList.contents.length ? (
+        {articleListPerPage.length ? (
           <div className={`${styles.articleList} grid gap-4 md:gap-8 `}>
-            {data.articleList.contents.map((article) => (
+            {articleListPerPage[index].map((article) => (
               <div
                 key={article.id}
                 className='flex flex-col rounded-lg border p-4 md:p-6 hover:bg-slate-200'
@@ -72,6 +88,11 @@ const List = () => {
             記事が存在しません
           </h2>
         )}
+
+        <div className='flex px-3 my-12 justify-between'>
+          {index != 0 && <button onClick={handlePreviousClick}>&lt; Previous</button>}
+          {index != pageTotal - 1 && <button onClick={handleNextClick}>Next &gt;</button>}
+        </div>
       </div>
     </div>
   )
