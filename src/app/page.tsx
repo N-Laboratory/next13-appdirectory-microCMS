@@ -45,15 +45,12 @@ const Home = async () => {
 
             <div className='relative h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 lg:w-4/5 hidden lg:block'>
               <Image
-                src='/pg.svg'
+                src='/home.svg'
                 priority
                 fill
-                alt='Technology illustrations by Storyset'
+                alt='home'
                 className='h-full w-full object-cover object-center'
               />
-              <a className='absolute bottom-0 bg-slate-50' href='https://storyset.com/technology'>
-                Technology illustrations by Storyset
-              </a>
             </div>
           </section>
         </div>
@@ -122,12 +119,13 @@ const Home = async () => {
 
           <div className='grid mr-auto ml-auto lg:w-2/4'>
             <div className='flex flex-col items-center rounded-lg bg-gray-100 p-4 lg:p-8'>
-              <div className='relative mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32'>
+              <div className='mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32'>
                 <Image
                   src='/me.jpeg'
                   sizes='(max-width: 768px) 100vw'
-                  priority
-                  fill
+                  loading='lazy'
+                  width={24}
+                  height={24}
                   alt='Photo by Naoki Nakanishi'
                   className='h-full w-full object-cover object-center'
                 />

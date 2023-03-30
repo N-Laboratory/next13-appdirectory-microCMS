@@ -32,15 +32,12 @@ const Error = () => {
 
           <div className='relative h-80 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto hidden sm:block'>
             <Image
-              src='/error.svg'
+              src='/404.svg'
               priority
               fill
-              alt='Technology illustrations by Storyset'
+              alt='404'
               className='absolute inset-0 h-full w-full object-cover object-center'
             />
-            <a className='absolute bottom-0 bg-slate-50' href='https://storyset.com/technology'>
-              Technology illustrations by Storyset
-            </a>
           </div>
         </div>
       </div>

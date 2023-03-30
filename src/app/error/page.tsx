@@ -32,12 +32,9 @@ const Error = () => {
               src='/error.svg'
               priority
               fill
-              alt='Technology illustrations by Storyset'
+              alt='error'
               className='absolute inset-0 h-full w-full object-cover object-center'
             />
-            <a className='absolute bottom-0 bg-slate-50' href='https://storyset.com/technology'>
-              Technology illustrations by Storyset
-            </a>
           </div>
         </div>
       </div>
