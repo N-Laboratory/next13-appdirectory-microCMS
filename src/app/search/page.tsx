@@ -1,23 +1,21 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
 import styles from '../page.module.css'
 
 const Search = () => {
   const router = useRouter()
   const searchParams = useSearchParams()!
-  const [keyword, setKeyword] = useState('')
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const params = new URLSearchParams(searchParams)
-    params.set('keyword', keyword)
-    router.push('/list?' + params.toString())
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value)
+    if (!e.currentTarget?.keyword) {
+      router.push('/error')
+    } else {
+      params.set('keyword', e.currentTarget.keyword.value)
+      router.push('/list?' + params.toString())
+    }
   }
 
   return (
@@ -32,9 +30,7 @@ const Search = () => {
           <div className='flex flex-col items-center w-full'>
             <form className='mb-3 flex w-full max-w-md gap-2' onSubmit={handleSubmit}>
               <input
-                name='serachWord'
-                value={keyword}
-                onChange={handleChange}
+                name='keyword'
                 required
                 placeholder='search word'
                 className='border-black w-full flex-1 rounded border bg-gray-50 px-3 py-2 text-gray-800 placeholder-gray-500 outline-none ring-indigo-300 transition duration-100 focus:ring'

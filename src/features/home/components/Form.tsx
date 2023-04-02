@@ -10,8 +10,12 @@ const Form = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const params = new URLSearchParams(searchParams)
-    params.set('keyword', e.currentTarget.keyword.value)
-    router.push('/list?' + params.toString())
+    if (!e.currentTarget?.keyword) {
+      router.push('/error')
+    } else {
+      params.set('keyword', e.currentTarget.keyword.value)
+      router.push('/list?' + params.toString())
+    }
   }
 
   return (
