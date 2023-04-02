@@ -13,8 +13,11 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const article = await getArticle(htmlspecialchars(params.id))
-  if (!article) {
+  let hasError = false
+  const article = await getArticle(htmlspecialchars(params.id)).catch(() => {
+    hasError = true
+  })
+  if (hasError || !article) {
     return {
       title: '記事が見つかりません',
       description: '記事が見つかりません',
@@ -99,7 +102,9 @@ const replace: HTMLReactParserOptions = {
 }
 
 const Articles = async ({ params }: { params: { id: string } }) => {
-  const article = await getArticle(htmlspecialchars(params.id))
+  const article = await getArticle(htmlspecialchars(params.id)).catch(() => {
+    notFound()
+  })
   if (!article) {
     // notFound関数をコールするとnot-found.tsxが呼び出される
     notFound()

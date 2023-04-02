@@ -10,7 +10,10 @@ export const metadata = {
 }
 
 const Home = async () => {
-  const articleList = await getArticleList()
+  let hasError = false
+  const articleList = await getArticleList().catch(() => {
+    hasError = true
+  })
 
   return (
     <div className='flex-grow'>
@@ -60,7 +63,7 @@ const Home = async () => {
           <div
             className={`${styles.scrollArea} h-80 overflow-y-scroll h-96 sm:h-80 grid gap-8 sm:grid-cols-2 md:gap-12 xl:gap-16`}
           >
-            {articleList && articleList.contents.length ? (
+            {!hasError && articleList && articleList.contents.length ? (
               articleList.contents.map((article) => (
                 <div key={article.id} className='flex gap-4 md:gap-6'>
                   <div className='relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl'>
