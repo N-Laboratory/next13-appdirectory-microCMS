@@ -8,7 +8,6 @@ import Error from '../error/page'
 import Link from 'next/link'
 import { ArticleListResponse } from '../api/list/route'
 import styles from './page.module.css'
-import { Article } from '@/types'
 import { useState } from 'react'
 
 const fetcher = async (url: string, keyword: string) =>
@@ -33,19 +32,6 @@ const List = () => {
     },
   )
 
-  const articleTotal = data?.articleList?.totalCount ?? 1
-  const pageTotal = Math.ceil(articleTotal / 5)
-  const articleListPerPage: Article[][] = []
-  if (data && data.articleList && data.articleList.contents.length) {
-    let start = 0
-    let end = 5
-    for (let index = 0; index < pageTotal; index++) {
-      articleListPerPage.push(data.articleList.contents.slice(start, end))
-      start += 5
-      end += 5
-    }
-  }
-
   if (error) {
     return <Error />
   }
@@ -57,9 +43,9 @@ const List = () => {
   return (
     <div className='bg-white pb-6 sm:pb-8 lg:pb-12 flex-grow'>
       <div className='mx-auto max-w-screen-md px-4 md:px-8'>
-        {articleListPerPage.length ? (
+        {data && data.articleListPerPage && data.articleListPerPage.length ? (
           <div className='grid gap-4'>
-            {articleListPerPage[index].map((article) => (
+            {data.articleListPerPage[index].map((article) => (
               <div
                 key={article.id}
                 className='flex flex-col rounded-lg border p-4 md:p-6 hover:bg-slate-200'
@@ -93,7 +79,7 @@ const List = () => {
               &lt; Previous
             </button>
           )}
-          {index != pageTotal - 1 && (
+          {data && data.pageTotal != 0 && index != data.pageTotal - 1 && (
             <button name='next' onClick={handleClick}>
               Next &gt;
             </button>

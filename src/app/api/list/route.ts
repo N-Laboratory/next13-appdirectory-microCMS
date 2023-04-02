@@ -2,32 +2,44 @@ import 'server-only'
 import { htmlspecialchars } from '@/features/common/sanitize'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { ArticleList } from '@/types'
-import { client, getArticleListByKeyword } from '@/libs/microcms/client'
+import { Article } from '@/types'
+import { getArticleListByKeyword } from '@/libs/microcms/client'
 
 const userSchema = z.object({
   keyword: z.string(),
 })
 
 export type ArticleListResponse = {
-  articleList: ArticleList
+  articleListPerPage: Article[][]
+  pageTotal: number
 }
 
 export const POST = async (request: NextRequest) => {
   const body = await request.json()
   const result = userSchema.safeParse(body)
-  let apiResStatus = 200
+  const articleListPerPage: Article[][] = []
 
   if (!result.success) {
-    apiResStatus = 400
-    return NextResponse.json({}, { status: apiResStatus })
+    return NextResponse.json({ articleListPerPage }, { status: 400 })
   }
 
   const keyword = htmlspecialchars(result.data.keyword.trim())
   const articleList = await getArticleListByKeyword(keyword)
   if (!articleList) {
-    apiResStatus = 500
+    return NextResponse.json({ articleListPerPage }, { status: 500 })
   }
 
-  return NextResponse.json({ articleList }, { status: apiResStatus })
+  const articleTotal = articleList.totalCount ?? 1
+  const pageTotal = Math.ceil(articleTotal / 5)
+  if (articleList.contents.length) {
+    let start = 0
+    let end = 5
+    for (let index = 0; index < pageTotal; index++) {
+      articleListPerPage.push(articleList.contents.slice(start, end))
+      start += 5
+      end += 5
+    }
+  }
+
+  return NextResponse.json({ articleListPerPage, pageTotal }, { status: 200 })
 }

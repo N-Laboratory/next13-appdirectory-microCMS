@@ -35,7 +35,7 @@ export const getArticleList = async () => {
 
 export const getArticleListByKeyword = async (keyword: string) => {
   const articleList = await client
-    .getList<ArticleList>({ endpoint: 'article', queries: { q: keyword, limit: 100 } })
+    .getList<Article>({ endpoint: 'article', queries: { q: keyword, limit: 100 } })
     .then((res) => res)
     .catch((err) => {
       console.error(err)
