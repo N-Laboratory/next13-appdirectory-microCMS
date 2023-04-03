@@ -10,6 +10,6 @@ export type Article = {
   title: string
   detail: string
   overview: string
-  svgName: string
+  svgPath: string
   createdDate: string
 }

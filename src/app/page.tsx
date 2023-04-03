@@ -68,7 +68,7 @@ const Home = async () => {
                 <div key={article.id} className='flex gap-4 md:gap-6'>
                   <div className='relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl'>
                     <Image
-                      src={`/${article.svgName}.svg`}
+                      src={article.svgPath}
                       priority
                       fill
                       alt='svg icon'
