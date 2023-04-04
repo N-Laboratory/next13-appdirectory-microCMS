@@ -121,6 +121,33 @@ a {
   margin-top: -150px;
 }
 
+.dli-search {
+  display: inline-block;
+  color: white;
+  line-height: 1;
+  width: 0.7em;
+  height: 0.7em;
+  border: 0.1em solid currentColor;
+  border-radius: 50%;
+  box-sizing: content-box;
+  position: relative;
+  margin-left: 10px;
+  margin-right: -10px;
+}
+
+.dli-search::before {
+  content: '';
+  position: absolute;
+  top: calc(85.35534% + 0.07071em);
+  left: calc(85.35534% + 0.07071em);
+  width: 0.336em;
+  height: 0.1em;
+  background: currentColor;
+  border-radius: 0 0.1em 0.1em 0;
+  transform: translateY(-50%) rotate(45deg);
+  transform-origin: left center;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
