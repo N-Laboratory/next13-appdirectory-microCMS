@@ -36,7 +36,7 @@ const replace: HTMLReactParserOptions = {
       const props = attributesToProps(domNode.attribs)
       if (domNode.name === 'pre') {
         return (
-          <pre className={`${styles.code} my-3`} {...props}>
+          <pre className={`${styles.code} ${styles.scrollArea} my-3`} {...props}>
             {domToReact(domNode.children)}
           </pre>
         )

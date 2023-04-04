@@ -1,11 +1,12 @@
 .code {
-  white-space: pre-wrap;
+  white-space: pre;
   margin-bottom: 5px;
   margin-top: 5px;
   padding: 5px 10px;
   background-color: rgb(99 102 241 / 7%);
   color: #000000;
   overflow: visible;
+  overflow-x: auto;
 }
 
 .image {
@@ -20,4 +21,24 @@
 
 .linkColor:hover {
   color: rgb(9 13 255);
+}
+
+.scrollArea {
+  --sb-track-color: #232e33;
+  --sb-thumb-color: #6366f1;
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+.scrollArea::-webkit-scrollbar {
+  height: 9px;
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
 }
