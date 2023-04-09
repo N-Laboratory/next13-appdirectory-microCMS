@@ -24,13 +24,13 @@ const About = () => {
                 priority
                 sizes='(max-width: 768px) 100vw'
                 fill
-                alt='Photo by Naoki Nakanishi'
+                alt='Photo by N-Nakanishi'
                 className='h-full w-full object-cover object-center'
               />
             </div>
             <div>
               <div className='text-center text-sm font-bold text-indigo-500 sm:text-left md:text-base'>
-                Naoki Nakanishi
+                N-Nakanishi
               </div>
               <div className='flex mt-1 justify-center sm:justify-start'>
                 <div className='flex gap-4'>

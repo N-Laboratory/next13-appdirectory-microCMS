@@ -118,14 +118,14 @@ const Home = async () => {
                   loading='lazy'
                   width={24}
                   height={24}
-                  alt='Photo by Naoki Nakanishi'
+                  alt='Photo by N-Nakanishi'
                   className='h-full w-full object-cover object-center'
                 />
               </div>
 
               <div>
                 <div className='text-center font-bold text-indigo-500 md:text-lg'>
-                  Naoki Nakanishi
+                  N-Nakanishi
                 </div>
                 <p className='mb-3 text-center text-sm text-gray-500 md:mb-4 md:text-base'>
                   Web Engineer
