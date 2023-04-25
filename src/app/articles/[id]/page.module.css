@@ -3,7 +3,7 @@
   margin-bottom: 5px;
   margin-top: 5px;
   padding: 5px 10px;
-  background-color: rgb(99 102 241 / 7%);
+  background-color: rgb(99 102 241 / 5%);
   color: #000000;
   overflow: visible;
   overflow-x: auto;
@@ -21,6 +21,86 @@
 
 .linkColor:hover {
   color: rgb(9 13 255);
+}
+
+.overview {
+  padding: 0.4em 0.5em;
+  color: #494949;
+  background: rgb(99 102 241/9%);
+  border-left: solid 5px rgb(99 102 241/65%);
+  border-bottom: solid 3px #d7d7d7;
+}
+
+.title {
+  position: relative;
+  background: rgb(99 102 241/13%);
+  box-shadow: 0px 0px 0px 5px rgb(99 102 241/13%);
+  border: dashed 3px white;
+  padding: 0.2em 0.5em;
+  color: #454545;
+}
+
+.title:after {
+  position: absolute;
+  content: '';
+  left: -7px;
+  top: -7px;
+  border-width: 0 0 15px 15px;
+  border-style: solid;
+  border-color: #fff #fff rgb(99 102 241/30%);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.listTriangle {
+  list-style-type: none;
+  border: none;
+}
+
+.listTriangle li {
+  position:relative;
+  padding-left: 1.2em;
+  line-height: 1.5;
+}
+
+.listTriangle li:before {
+  position: absolute;
+  content: '';
+  border-top: 8px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 12px solid rgb(99 102 241/52%);
+  top: 6.5px;
+  left: 0px;
+}
+
+.order {
+  list-style-type: none;
+  border: none;
+  counter-reset: number;
+}
+
+.order li {
+  position: relative;
+  line-height: 1.5;
+  padding: 5px 0px 0px 25px;
+}
+
+.order li:before {
+  position: absolute;
+  font-family: "Quicksand", sans-serif;
+  content: counter(number);
+  counter-increment: number;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgb(99 102 241/52%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  top: 10px;
+  line-height: 20px;
 }
 
 .scrollArea {

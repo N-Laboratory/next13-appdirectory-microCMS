@@ -44,7 +44,7 @@ const replace: HTMLReactParserOptions = {
       if (domNode.name === 'h1') {
         return (
           <h1
-            className='border-b-4 border-double border-black pb-1.5 mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6'
+            className={`${styles.title} pb-1.5 mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6`}
             {...props}
           >
             {domToReact(domNode.children)}
@@ -54,7 +54,7 @@ const replace: HTMLReactParserOptions = {
       if (domNode.name === 'h2') {
         return (
           <h2
-            className='font-normal mb-2 text-xl font-semibold text-gray-800 sm:text-2xl md:mb-4'
+            className={`${styles.overview} font-normal mb-2 text-xl font-semibold text-gray-800 sm:text-2xl md:mb-4`}
             {...props}
           >
             {domToReact(domNode.children)}
@@ -63,14 +63,14 @@ const replace: HTMLReactParserOptions = {
       }
       if (domNode.name === 'ul') {
         return (
-          <ul className='list-inside list-disc sm:text-lg' {...props}>
+          <ul className={`${styles.listTriangle} list-inside sm:text-lg`} {...props}>
             {domToReact(domNode.children)}
           </ul>
         )
       }
       if (domNode.name === 'ol') {
         return (
-          <ol className='list-inside list-decimal sm:text-lg' {...props}>
+          <ol className={`${styles.order} list-inside sm:text-lg`} {...props}>
             {domToReact(domNode.children)}
           </ol>
         )
