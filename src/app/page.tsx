@@ -113,7 +113,7 @@ const Home = async () => {
             <div className='flex flex-col items-center rounded-lg bg-gray-100 p-4 lg:p-8'>
               <div className='mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32'>
                 <Image
-                  src='/me.jpeg'
+                  src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/08b9cd4addd748a5acc8f9feebb00f12/me.jpeg'
                   sizes='(max-width: 768px) 100vw'
                   loading='lazy'
                   width={24}
@@ -140,7 +140,7 @@ const Home = async () => {
                       className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'
                     >
                       <Image
-                        src='/github.svg'
+                        src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/b49126276d334159b476f9e3ac422ed2/github.svg'
                         loading='lazy'
                         width={24}
                         height={24}
@@ -156,7 +156,7 @@ const Home = async () => {
                       className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'
                     >
                       <Image
-                        src='/twitter.svg'
+                        src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/6535bf55a88d48a890935deb2a5ef9fd/twitter.svg'
                         loading='lazy'
                         width={24}
                         height={24}

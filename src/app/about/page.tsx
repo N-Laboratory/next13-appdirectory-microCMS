@@ -20,7 +20,7 @@ const About = () => {
           <div className='flex items-center gap-2 flex-row md:gap-3'>
             <div className='relative h-12 w-12 overflow-hidden rounded-full bg-gray-100 shadow-lg md:h-14 md:w-14'>
               <Image
-                src='/me.jpeg'
+                src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/08b9cd4addd748a5acc8f9feebb00f12/me.jpeg'
                 priority
                 sizes='(max-width: 768px) 100vw'
                 fill
@@ -41,7 +41,7 @@ const About = () => {
                     className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'
                   >
                     <Image
-                      src='/github.svg'
+                      src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/b49126276d334159b476f9e3ac422ed2/github.svg'
                       loading='lazy'
                       width={24}
                       height={24}
@@ -56,7 +56,7 @@ const About = () => {
                     className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'
                   >
                     <Image
-                      src='/twitter.svg'
+                      src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/6535bf55a88d48a890935deb2a5ef9fd/twitter.svg'
                       loading='lazy'
                       width={24}
                       height={24}
