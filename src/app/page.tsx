@@ -48,7 +48,7 @@ const Home = async () => {
         </div>
       </div>
 
-      <div className='bg-white py-6 sm:py-8 lg:py-12 xl:px-24'>
+      <div className='bg-white py-6 sm:py-8 lg:py-12 xl:px-24 mb-16'>
         <div className='mx-auto max-w-screen-2xl px-4 md:px-8'>
           <div className='mb-10 md:mb-16'>
             <h2 className='mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl'>
@@ -103,74 +103,6 @@ const Home = async () => {
         </div>
       </div>
 
-      <div className='mt-4 bg-white py-6 sm:py-8 lg:py-12'>
-        <div className='mx-auto max-w-screen-xl px-4 md:px-8'>
-          <div id='about-me'>
-            <h2 className='mb-4 text-center text-4xl font-bold text-gray-800 md:mb-6'>Meet me</h2>
-          </div>
-
-          <div className='grid mr-auto ml-auto lg:w-2/4'>
-            <div className='flex flex-col items-center rounded-lg bg-gray-100 p-4 lg:p-8'>
-              <div className='mb-2 h-24 w-24 overflow-hidden rounded-full bg-gray-200 shadow-lg md:mb-4 md:h-32 md:w-32'>
-                <Image
-                  src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/08b9cd4addd748a5acc8f9feebb00f12/me.jpeg'
-                  sizes='(max-width: 768px) 100vw'
-                  loading='lazy'
-                  width={24}
-                  height={24}
-                  alt='Photo by N-Nakanishi'
-                  className='h-full w-full object-cover object-center'
-                />
-              </div>
-
-              <div>
-                <div className='text-center font-bold text-indigo-500 md:text-lg'>
-                  N-Nakanishi
-                </div>
-                <p className='mb-3 text-center text-sm text-gray-500 md:mb-4 md:text-base'>
-                  Web Engineer
-                </p>
-
-                <div className='flex justify-center'>
-                  <div className='flex gap-4'>
-                    <a
-                      href='https://github.com/N-Laboratory'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'
-                    >
-                      <Image
-                        src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/b49126276d334159b476f9e3ac422ed2/github.svg'
-                        loading='lazy'
-                        width={24}
-                        height={24}
-                        alt='github icon'
-                        className='h-5 w-5'
-                      />
-                    </a>
-
-                    <a
-                      href='https://twitter.com/NL4boratory'
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='text-gray-400 transition duration-100 hover:text-gray-500 active:text-gray-600'
-                    >
-                      <Image
-                        src='https://images.microcms-assets.io/assets/7478dd5932af4278b8ba184c182f5e26/6535bf55a88d48a890935deb2a5ef9fd/twitter.svg'
-                        loading='lazy'
-                        width={24}
-                        height={24}
-                        alt='twitter icon'
-                        className='h-5 w-5'
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
