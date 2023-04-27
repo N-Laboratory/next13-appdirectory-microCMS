@@ -1,3 +1,7 @@
+.pageWidth {
+  max-width: 900px;
+}
+
 .code {
   white-space: pre;
   margin-bottom: 5px;
