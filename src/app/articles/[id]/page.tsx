@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { getArticle } from '@/libs/microcms/client'
+import { getArticle, getArticleList } from '@/libs/microcms/client'
 import { Article } from '@/types'
 import parse, {
   domToReact,
@@ -11,6 +11,16 @@ import styles from './page.module.css'
 import { htmlspecialchars } from '@/features/common/sanitize'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+
+// Dynamic Route使用時にSSGでビルドする
+export async function generateStaticParams() {
+  const response = await getArticleList()
+  const articleList = response?.contents
+
+  return !articleList ? [{ id: "0"}] : articleList.map((article) => ({
+    id: article.id,
+  }));
+}
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
   let hasError = false
