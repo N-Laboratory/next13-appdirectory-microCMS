@@ -41,5 +41,11 @@ export const POST = async (request: NextRequest) => {
     }
   }
 
-  return NextResponse.json({ articleListPerPage, pageTotal }, { status: 200 })
+  return NextResponse.json(
+    { articleListPerPage, pageTotal },
+    {
+      status: 200,
+      headers: { 'content-type': 'application/json', 'cache-control': 'max-age=0, s-maxage=60,stale-while-revalidate=60' },
+    },
+  )
 }

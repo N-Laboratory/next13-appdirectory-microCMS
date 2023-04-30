@@ -1,8 +1,7 @@
 const cacheHeaders = [
   {
     key: 'Cache-Control',
-    value: 'max-age=0, s-maxage=86400'
-    ,
+    value: 'max-age=0, s-maxage=86400',
   }
 ];
 
@@ -26,14 +25,6 @@ const nextConfig = {
       },
       {
         source: '/_next/data/:hash/list',
-        headers: cacheHeaders,
-      },
-      {
-        source: '/api/list',
-        headers: cacheHeaders,
-      },
-      {
-        source: '/_next/data/:hash/api/list',
         headers: cacheHeaders,
       },
       {
