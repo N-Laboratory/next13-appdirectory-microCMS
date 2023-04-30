@@ -27,6 +27,10 @@
   color: rgb(9 13 255);
 }
 
+.linkWord {
+  word-wrap:break-word;
+}
+
 .overview {
   padding: 0.4em 0.5em;
   color: #494949;

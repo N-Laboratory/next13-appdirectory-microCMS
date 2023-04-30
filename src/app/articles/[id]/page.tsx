@@ -87,7 +87,7 @@ const replace: HTMLReactParserOptions = {
       }
       if (domNode.name === 'a') {
         return (
-          <a className={`${styles.linkColor}`} {...props}>
+          <a className={`${styles.linkColor} ${styles.linkWord}`} {...props}>
             {domToReact(domNode.children)}
           </a>
         )
