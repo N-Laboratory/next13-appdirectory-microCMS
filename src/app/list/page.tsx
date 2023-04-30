@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation'
 import Loading from '../loading'
-import useSWRImmutable from 'swr/immutable'
+import useSWR from 'swr'
 import axios from 'axios'
 import Error from '../error/page'
 import Link from 'next/link'
@@ -24,7 +24,7 @@ const List = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const { data, error, isLoading } = useSWRImmutable<ArticleListResponse>(
+  const { data, error, isLoading } = useSWR<ArticleListResponse>(
     ['/api/list', keyword],
     ([url, keyword]: [url: string, keyword: string]) => fetcher(url, keyword),
     {
