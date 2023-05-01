@@ -1,5 +1,10 @@
 import Image from 'next/image'
 
+export const metadata = {
+  title: 'About Me | N-LAB',
+  description: 'About Me',
+}
+
 const About = () => {
   return (
     <div className='bg-white pb-12 flex-grow'>

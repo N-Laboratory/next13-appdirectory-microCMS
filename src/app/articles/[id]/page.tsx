@@ -29,13 +29,16 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   })
   if (hasError || !article) {
     return {
-      title: '記事が見つかりません',
+      title: 'Not Found | N-LAB',
       description: '記事が見つかりません',
     }
   }
   return {
     title: `${article.title} | N-LAB`,
     description: article.overview,
+    alternates: {
+      canonical: `https://n-laboratory.jp/articles/${article.id}`,
+    },
   }
 }
 

@@ -1,6 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Not Found | N-LAB',
+  description: 'ページが見つかりません。',
+}
+
 // 動的ルーティングを利用して存在しないパスの入力を捕捉する
 // 2023/3/28時点ではapp directoryではカスタム404/500ページの利用が使用不可
 // https://makerkit.dev/blog/tutorials/nextjs13#custom-404-and-500-pages
