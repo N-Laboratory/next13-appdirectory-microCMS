@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://n-laboratory.jp/
+
+# Sitemaps
+Sitemap: https://n-laboratory.jp/sitemap.xml
