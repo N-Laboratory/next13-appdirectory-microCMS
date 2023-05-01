@@ -148,6 +148,10 @@ a {
   transform-origin: left center;
 }
 
+.min-h-dvh {
+  min-height: 100dvh;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

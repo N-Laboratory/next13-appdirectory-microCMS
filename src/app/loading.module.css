@@ -4,7 +4,7 @@
 }
 
 .atomSpinner {
-  height: 100vh;
+  height: 100dvh;
   width: 120px;
   overflow: hidden;
   display: grid;
