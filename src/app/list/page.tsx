@@ -50,7 +50,7 @@ const List = () => {
                 key={article.id}
                 className='flex flex-col rounded-lg border p-4 md:p-6 hover:bg-slate-200'
               >
-                <h3 className='mb-2 text-lg font-semibold md:text-xl'>{article.title}</h3>
+                <h3 className='mb-2 text-lg text-gray-800 font-semibold md:text-xl'>{article.title}</h3>
                 <p title={article.overview} className={`${styles.overview} mb-4 text-gray-500`}>
                   {article.overview}
                 </p>
@@ -75,12 +75,12 @@ const List = () => {
 
         <div className='flex px-3 my-12 justify-between'>
           {index != 0 && (
-            <button name='previous' onClick={handleClick}>
+            <button className='text-gray-800' name='previous' onClick={handleClick}>
               &lt; Previous
             </button>
           )}
           {data && data.pageTotal != 0 && index != data.pageTotal - 1 && (
-            <button name='next' onClick={handleClick}>
+            <button className='text-gray-800' name='next' onClick={handleClick}>
               Next &gt;
             </button>
           )}

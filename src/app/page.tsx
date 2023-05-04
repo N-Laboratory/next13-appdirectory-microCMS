@@ -27,7 +27,7 @@ const Home = async () => {
                 N-Laboratory
               </p>
 
-              <h1 className='text-black-800 mb-8 text-4xl font-bold sm:text-5xl md:mb-12 md:text-6xl'>
+              <h1 className='text-gray-800 mb-8 text-4xl font-bold sm:text-5xl md:mb-12 md:text-6xl'>
                 Learn Information Technology
               </h1>
 
@@ -79,7 +79,7 @@ const Home = async () => {
                   </div>
 
                   <div className='w-full'>
-                    <h3 className='mb-2 text-lg font-semibold md:text-xl'>{article.title}</h3>
+                    <h3 className='mb-2 text-lg text-gray-800 font-semibold md:text-xl'>{article.title}</h3>
                     <p title={article.overview} className={`${styles.overview} mb-2 text-gray-500`}>
                       {article.overview}
                     </p>

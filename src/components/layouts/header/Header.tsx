@@ -20,7 +20,7 @@ const Header = () => {
             <Link
               prefetch={false}
               href='/'
-              className='text-black-800 inline-flex items-center gap-2.5 text-4xl sm:text-2xl font-bold md:text-3xl absolute left-0'
+              className='text-gray-800 inline-flex items-center gap-2.5 text-4xl sm:text-2xl font-bold md:text-3xl absolute left-0'
               aria-label='logo'
             >
               N-LAB
