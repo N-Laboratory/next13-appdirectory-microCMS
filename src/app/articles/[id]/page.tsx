@@ -17,9 +17,11 @@ export async function generateStaticParams() {
   const response = await getArticleList()
   const articleList = response?.contents
 
-  return !articleList ? [{ id: "0"}] : articleList.map((article) => ({
-    id: article.id,
-  }));
+  return !articleList
+    ? [{ id: '0' }]
+    : articleList.map((article) => ({
+        id: article.id,
+      }))
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {

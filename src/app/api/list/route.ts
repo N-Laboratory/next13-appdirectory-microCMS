@@ -24,7 +24,8 @@ export const POST = async (request: NextRequest) => {
   }
 
   const keyword = htmlspecialchars(result.data.keyword.trim())
-  const articleList = keyword == '' ? await getArticleList() : await getArticleListByKeyword(keyword)
+  const articleList =
+    keyword == '' ? await getArticleList() : await getArticleListByKeyword(keyword)
   if (!articleList) {
     return NextResponse.json({ articleListPerPage }, { status: 500 })
   }
@@ -45,7 +46,10 @@ export const POST = async (request: NextRequest) => {
     { articleListPerPage, pageTotal },
     {
       status: 200,
-      headers: { 'content-type': 'application/json', 'cache-control': 'max-age=0, s-maxage=60,stale-while-revalidate=60' },
+      headers: {
+        'content-type': 'application/json',
+        'cache-control': 'max-age=0, s-maxage=60,stale-while-revalidate=60',
+      },
     },
   )
 }

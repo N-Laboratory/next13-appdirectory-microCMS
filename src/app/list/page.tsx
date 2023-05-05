@@ -50,7 +50,9 @@ const List = () => {
                 key={article.id}
                 className='flex flex-col rounded-lg border p-4 md:p-6 hover:bg-slate-200'
               >
-                <h3 className='mb-2 text-lg text-gray-800 font-semibold md:text-xl'>{article.title}</h3>
+                <h3 className='mb-2 text-lg text-gray-800 font-semibold md:text-xl'>
+                  {article.title}
+                </h3>
                 <p title={article.overview} className={`${styles.overview} mb-4 text-gray-500`}>
                   {article.overview}
                 </p>

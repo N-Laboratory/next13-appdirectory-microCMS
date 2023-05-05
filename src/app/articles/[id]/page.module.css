@@ -28,7 +28,7 @@
 }
 
 .linkWord {
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 .overview {
@@ -65,7 +65,7 @@
 }
 
 .listTriangle li {
-  position:relative;
+  position: relative;
   padding-left: 1.2em;
   line-height: 1.5;
 }
@@ -94,7 +94,7 @@
 
 .order li:before {
   position: absolute;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   content: counter(number);
   counter-increment: number;
   left: 0;
