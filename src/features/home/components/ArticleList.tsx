@@ -18,7 +18,7 @@ const ArticleList = ({ hasError, articleList }: Props) => {
       <div className={`h-80 h-96 sm:h-80 grid gap-8 sm:grid-cols-2 md:gap-12 xl:gap-16`}>
         {!hasError && articleList && articleList.contents.length ? (
           articleList.contents.map((article) => (
-            <div key={article.id} className='flex gap-4 md:gap-6'>
+            <div key={article.id} className='flex gap-4 md:gap-6 pr-3.5'>
               <div className='relative flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-indigo-500 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl'>
                 <Image
                   src={article.svgPath}
@@ -44,7 +44,7 @@ const ArticleList = ({ hasError, articleList }: Props) => {
                   >
                     More
                   </Link>
-                  <p className='pr-3.5 mt-auto text-gray-500'>{article.createdDate}</p>
+                  <p className='pr-1 mt-auto text-gray-500'>{article.createdDate}</p>
                 </div>
               </div>
             </div>
