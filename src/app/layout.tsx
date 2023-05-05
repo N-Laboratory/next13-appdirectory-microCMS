@@ -10,6 +10,11 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
     apple: '/favicon.ico',
   },
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#6366F1' },
+    { media: '(prefers-color-scheme: dark)', color: '#6366F1' },
+    { color: '#6366F1' },
+  ],
 }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
