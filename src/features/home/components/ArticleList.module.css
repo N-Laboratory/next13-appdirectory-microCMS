@@ -1,0 +1,10 @@
+.scrollArea {
+  height: 320px;
+}
+
+.overview {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

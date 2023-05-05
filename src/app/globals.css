@@ -152,6 +152,14 @@ a {
   min-height: 100dvh;
 }
 
+.simplebar-track.simplebar-vertical {
+  background: rgb(99, 102, 241, 0.1);
+}
+
+.simplebar-scrollbar::before {
+  background: rgb(32, 36, 255);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
