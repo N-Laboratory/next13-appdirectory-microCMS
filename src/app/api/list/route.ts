@@ -46,10 +46,6 @@ export const POST = async (request: NextRequest) => {
     { articleListPerPage, pageTotal },
     {
       status: 200,
-      headers: {
-        'content-type': 'application/json',
-        'cache-control': 'max-age=0, s-maxage=60,stale-while-revalidate=60',
-      },
     },
   )
 }

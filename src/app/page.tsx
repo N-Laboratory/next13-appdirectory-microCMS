@@ -4,8 +4,6 @@ import styles from './page.module.css'
 import Form from '@/features/home/components/Form'
 import ArticleList from '@/features/home/components/ArticleList'
 
-export const fetchCache = 'force-cache'
-
 export const metadata = {
   title: 'Home | N-LAB',
   description: 'このウェブサイトは日々の業務を通じて学習したIT技術を備忘録も兼ねて掲載しています。',
