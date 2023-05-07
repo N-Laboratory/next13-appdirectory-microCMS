@@ -1,9 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-const HeaderMobile = () => {
+type Props = {
+  active?: boolean
+}
+
+const HeaderMobile = ({ active }: Props) => {
+  const display = active ? 'block' : 'hidden'
+
   return (
-    <div className='bg-white fixed bottom-0 left-0 w-full block sm:hidden z-50'>
+    <div className={`${display} bg-white fixed bottom-0 left-0 w-full block sm:hidden z-50`}>
       <nav className='sticky bottom-0 mx-auto flex w-full justify-between gap-8 border-t bg-white px-10 py-4 text-xs sm:max-w-md sm:rounded-t-xl sm:border-transparent sm:text-sm sm:shadow-2xl'>
         <Link
           prefetch={false}

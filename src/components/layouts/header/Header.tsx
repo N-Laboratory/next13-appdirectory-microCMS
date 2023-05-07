@@ -70,7 +70,7 @@ const Header = () => {
           </header>
         </div>
       </div>
-      {active && <HeaderMobile />}
+      <HeaderMobile active={active} />
     </>
   )
 }
