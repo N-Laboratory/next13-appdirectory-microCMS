@@ -153,11 +153,15 @@ a {
 }
 
 .simplebar-track.simplebar-vertical {
-  background: rgb(99, 102, 241, 0.1);
+  background: rgb(99, 102, 241, 0.1) !important;
 }
 
-.simplebar-scrollbar::before {
-  background: rgb(32, 36, 255);
+.simplebar-scrollbar:before {
+  background: rgb(32, 36, 255) !important;
+}
+
+.simplebar-offset {
+  right: 0px !important;
 }
 
 @media (prefers-color-scheme: dark) {
