@@ -34,6 +34,14 @@ Next 13 + app directory + microCMS + TailWind CSS
 npm ci
 ```
 
+プロジェクトのルート配下に「.env.local」を新規作成して、以下を追加します。
+```bash
+# microCMSのAPIキーを記載します
+API_KEY=XXXXXXXXXXXXXXXXXX
+# microCMSのサービス名を記載します
+SERVICE_DOMAIN=hoge
+```
+
 ローカルサーバーの起動。
 ```bash
 npm run dev
@@ -44,3 +52,11 @@ http://localhost:3000
 
 
 ## Demo
+* 記事一覧
+<img src="https://user-images.githubusercontent.com/42198184/236676267-6985a216-7d7c-4913-a617-f3bfca127521.gif">
+
+* 記事検索
+<img src="https://user-images.githubusercontent.com/42198184/236676291-4a529a3d-127e-4015-99aa-0c63d154b650.gif">
+
+* 記事詳細
+<img src="https://user-images.githubusercontent.com/42198184/236676293-1c76f008-88d0-44db-a0a7-3ecfbcf05dc2.gif">
