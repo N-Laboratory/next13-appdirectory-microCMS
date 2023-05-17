@@ -14,7 +14,7 @@ import { notFound } from 'next/navigation'
 
 // Dynamic Route使用時にSSGでビルドする
 export async function generateStaticParams() {
-  const response = await getArticleList()
+  const response = await getArticleList('id')
   const articleList = response?.contents
 
   return !articleList

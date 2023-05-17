@@ -33,11 +33,15 @@ export const getArticle = async (id: string) => {
   return article
 }
 
-export const getArticleList = async () => {
+export const getArticleList = async (filedNames?: string) => {
   const articleList = await client
     .get<ArticleList>({
       endpoint: 'article',
-      queries: { limit: 100, clearCache: 'true' } as CustomMicroCMSQueries,
+      queries: {
+        limit: 100,
+        clearCache: 'true',
+        fields: filedNames ?? '',
+      } as CustomMicroCMSQueries,
     })
     .then((res) => res)
     .catch((err) => {
@@ -46,11 +50,16 @@ export const getArticleList = async () => {
   return articleList
 }
 
-export const getArticleListByKeyword = async (keyword: string) => {
+export const getArticleListByKeyword = async (keyword: string, filedNames?: string) => {
   const articleList = await client
     .getList<Article>({
       endpoint: 'article',
-      queries: { q: keyword, limit: 100, clearCache: 'true' } as CustomMicroCMSQueries,
+      queries: {
+        q: keyword,
+        limit: 100,
+        clearCache: 'true',
+        fields: filedNames ?? '',
+      } as CustomMicroCMSQueries,
     })
     .then((res) => res)
     .catch((err) => {

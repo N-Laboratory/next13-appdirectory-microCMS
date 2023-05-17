@@ -25,7 +25,9 @@ export const POST = async (request: NextRequest) => {
 
   const keyword = htmlspecialchars(result.data.keyword.trim())
   const articleList =
-    keyword == '' ? await getArticleList() : await getArticleListByKeyword(keyword)
+    keyword == ''
+      ? await getArticleList('id,title,overview,svgPath,createdDate')
+      : await getArticleListByKeyword(keyword, 'id,title,overview,svgPath,createdDate')
   if (!articleList) {
     return NextResponse.json({ articleListPerPage }, { status: 500 })
   }

@@ -11,7 +11,7 @@ export const metadata = {
 
 const Home = async () => {
   let hasError = false
-  const articleList = await getArticleList().catch(() => {
+  const articleList = await getArticleList('id,title,overview,svgPath,createdDate').catch(() => {
     hasError = true
   })
 
