@@ -126,7 +126,7 @@ const Articles = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className='bg-white py-6 sm:py-8 lg:py-12 flex-grow'>
+    <div className='bg-white flex-grow'>
       <div className={`${styles.pageWidth} mx-auto px-4 md:px-8 leading-7`}>
         {article.detail ? parse(article.detail, replace) : ''}
       </div>
