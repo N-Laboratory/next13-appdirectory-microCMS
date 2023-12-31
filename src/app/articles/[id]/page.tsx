@@ -59,7 +59,7 @@ const replace: HTMLReactParserOptions = {
       if (domNode.name === 'h1') {
         return (
           <h1
-            className={`${styles.title} pb-1.5 mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6`}
+            className={`${styles.title} pb-1.5 mt-1 mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6`}
             {...props}
           >
             {domToReact(domNode.children)}
