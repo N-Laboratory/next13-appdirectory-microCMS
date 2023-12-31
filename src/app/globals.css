@@ -152,7 +152,8 @@ a {
   min-height: 100dvh;
 }
 
-.simplebar-track.simplebar-vertical {
+.simplebar-track.simplebar-vertical,
+.simplebar-track.simplebar-horizontal {
   background: rgb(99, 102, 241, 0.1) !important;
 }
 

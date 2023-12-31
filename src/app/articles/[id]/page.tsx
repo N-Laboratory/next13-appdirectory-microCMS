@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { getArticle, getArticleList } from '@/libs/microcms/client'
-import { Article } from '@/types'
 import parse, {
   domToReact,
   HTMLReactParserOptions,
@@ -11,6 +10,7 @@ import styles from './page.module.css'
 import { htmlspecialchars } from '@/features/common/sanitize'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Code from '@/features/articles/components/Code'
 
 // Dynamic Route使用時にSSGでビルドする
 export async function generateStaticParams() {
@@ -50,11 +50,7 @@ const replace: HTMLReactParserOptions = {
     if (domNode instanceof Element && domNode.attribs) {
       const props = attributesToProps(domNode.attribs)
       if (domNode.name === 'pre') {
-        return (
-          <pre className={`${styles.code} ${styles.scrollArea} my-3`} {...props}>
-            {domToReact(domNode.children)}
-          </pre>
-        )
+        return <Code props={props} jsx={domToReact(domNode.children)} />
       }
       if (domNode.name === 'h1') {
         return (
