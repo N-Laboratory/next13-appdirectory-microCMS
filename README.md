@@ -1,4 +1,4 @@
-<h1 align="center">Nrxt 13 + app directory + microCMS</h1>
+<h1 align="center">Next 13 + app directory + microCMS</h1>
 <p align="center">
   <img src="https://img.shields.io/badge/-Typescript-00bfff.svg?logo=typescript&style=flat">
   <img src="https://img.shields.io/badge/-Next.js-000000.svg?logo=next.js&style=flat">

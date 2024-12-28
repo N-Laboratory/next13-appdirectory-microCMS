@@ -16,7 +16,7 @@ const NotFound = () => {
             </h1>
 
             <p className='mb-8 text-center text-gray-500 sm:text-left md:text-lg'>
-              Please try agein.
+              Please try again.
             </p>
 
             <Link
