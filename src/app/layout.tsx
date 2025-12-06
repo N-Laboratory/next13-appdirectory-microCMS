@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <span className='text-accent'>.</span>
           </div>
-          <nav className='hidden md:block'>
+          <nav>
             <ul className='flex gap-8'>
               {itemList.map((item) => (
                 <li key={item.url}>
