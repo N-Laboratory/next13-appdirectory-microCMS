@@ -33,32 +33,16 @@ export const getArticle = async (id: string) => {
   return article
 }
 
-export const getArticleList = async (filedNames?: string) => {
+export const getArticleList = async (filedNames?: string, keyword?: string) => {
   const articleList = await client
     .get<ArticleList>({
       endpoint: 'article',
       queries: {
+        ...(keyword && { q: keyword }),
         limit: 100,
         clearCache: 'true',
         fields: filedNames ?? '',
-      } as CustomMicroCMSQueries,
-    })
-    .then((res) => res)
-    .catch((err) => {
-      console.error(err)
-    })
-  return articleList
-}
-
-export const getArticleListByKeyword = async (keyword: string, filedNames?: string) => {
-  const articleList = await client
-    .getList<Article>({
-      endpoint: 'article',
-      queries: {
-        q: keyword,
-        limit: 100,
-        clearCache: 'true',
-        fields: filedNames ?? '',
+        orders: '-publishedAt',
       } as CustomMicroCMSQueries,
     })
     .then((res) => res)
