@@ -1,45 +1,50 @@
-import Image from 'next/image'
+'use client'
+
 import Link from 'next/link'
 
-const Error = () => {
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string }
+  reset: () => void
+}) {
   return (
-    <div className='center-contents bg-white py-6 sm:py-8 lg:py-12 flex-grow'>
-      <div className='w-full mx-auto max-w-screen-lg px-4 md:px-8'>
-        <div className='grid gap-8 sm:grid-cols-2'>
-          <div className='flex flex-col items-center justify-center sm:items-start md:py-24 lg:py-32'>
-            <p className='mb-4 text-sm font-semibold uppercase text-indigo-500 md:text-base'>
-              Error
-            </p>
-            <h1 className='mb-2 text-center text-2xl font-bold text-gray-800 sm:text-left md:text-3xl'>
-              An error occurred
-            </h1>
+    <div className='min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#0f1014] text-[#e2e8f0] font-sans'>
+      <div className='absolute inset-0 hero-grid-bg -z-10' />
 
-            <p className='mb-8 text-center text-gray-500 sm:text-left md:text-lg'>
-              Please try again.
-            </p>
+      <main className='text-center z-10 px-5'>
+        <h1 className='text-8xl md:text-[10rem] font-extrabold leading-none mb-4 font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-slate-500'>
+          500
+        </h1>
 
-            <Link
-              prefetch={false}
-              href='/'
-              className='inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base'
-            >
-              Go home
-            </Link>
-          </div>
+        <h2 className='text-2xl md:text-3xl font-bold mb-4 text-[#e2e8f0]'>
+          Something went wrong.
+        </h2>
+        <p className='text-base md:text-lg text-[#94a3b8] mb-10 max-w-md mx-auto leading-relaxed'>
+          予期せぬエラーが発生しました。
+          <br />
+          しばらく時間をおいてから、再度お試しください。
+        </p>
 
-          <div className='relative h-80 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto hidden sm:block'>
-            <Image
-              src='/error.svg'
-              priority
-              fill
-              alt='error'
-              className='absolute inset-0 h-full w-full object-cover object-center'
-            />
-          </div>
+        <div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
+          <button
+            onClick={() => reset()}
+            className='group inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#00DC82] bg-[#00DC82]/10 text-[#00DC82] font-semibold transition-all duration-300 hover:bg-[#00DC82] hover:text-[#0f1014] hover:shadow-[0_0_20px_rgba(0,220,130,0.5)] cursor-pointer'
+          >
+            <span className='font-mono'>Try Again</span>
+            <span className='transition-transform duration-300 group-hover:rotate-180'>↻</span>
+          </button>
+
+          <Link
+            href='/'
+            className='group inline-flex items-center gap-3 px-8 py-3 rounded-full border border-[#2d3748] bg-white/5 text-[#e2e8f0] font-semibold transition-all duration-300 hover:border-white hover:bg-white/10'
+          >
+            <span className='font-mono'>Back to Top</span>
+            <span className='transition-transform duration-300 group-hover:translate-x-1'>→</span>
+          </Link>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
-
-export default Error
