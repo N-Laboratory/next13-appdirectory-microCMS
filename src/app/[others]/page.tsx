@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata = {
@@ -6,48 +5,30 @@ export const metadata = {
   description: 'ページが見つかりません。',
 }
 
-// 動的ルーティングを利用して存在しないパスの入力を捕捉する
-// 2023/3/28時点ではapp directoryではカスタム404/500ページの利用が使用不可
-// https://makerkit.dev/blog/tutorials/nextjs13#custom-404-and-500-pages
-const Error = () => {
+export default function NotFound() {
   return (
-    <div className='center-contents bg-white py-6 sm:py-8 lg:py-12 flex-grow'>
-      <div className='w-full mx-auto max-w-screen-lg px-4 md:px-8'>
-        <div className='grid gap-8 sm:grid-cols-2'>
-          <div className='flex flex-col items-center justify-center sm:items-start md:py-24 lg:py-32'>
-            <p className='mb-4 text-sm font-semibold uppercase text-indigo-500 md:text-base'>
-              Error
-            </p>
-            <h1 className='mb-2 text-center text-2xl font-bold text-gray-800 sm:text-left md:text-3xl'>
-              Page not found
-            </h1>
+    <div className='min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#0f1014] text-[#e2e8f0] font-sans'>
+      <div className='absolute inset-0 hero-grid-bg -z-10' />
+      <main className='text-center z-10 px-5'>
+        <h1 className='text-9xl md:text-[10rem] font-extrabold leading-none mb-2 font-mono tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500'>
+          404
+        </h1>
 
-            <p className='mb-8 text-center text-gray-500 sm:text-left md:text-lg'>
-              Please try again.
-            </p>
+        <h2 className='text-2xl md:text-3xl font-bold mb-6 text-[#e2e8f0]'>Page Not Found.</h2>
+        <p className='text-base md:text-lg text-[#94a3b8] mb-12 max-w-md mx-auto leading-relaxed'>
+          お探しのページは削除されたか、
+          <br className='hidden md:block' />
+          URLが変更された可能性があります。
+        </p>
 
-            <Link
-              prefetch={false}
-              href='/'
-              className='inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base'
-            >
-              Go home
-            </Link>
-          </div>
-
-          <div className='relative h-80 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto hidden sm:block'>
-            <Image
-              src='/404.svg'
-              priority
-              fill
-              alt='404'
-              className='absolute inset-0 h-full w-full object-cover object-center'
-            />
-          </div>
-        </div>
-      </div>
+        <Link
+          href='/'
+          className='group inline-flex items-center gap-3 px-8 py-3 rounded-full border border-[#2d3748] bg-white/5 text-[#e2e8f0] font-semibold transition-all duration-300 hover:border-[#00DC82] hover:bg-[#00DC82]/10 hover:text-[#00DC82] hover:shadow-[0_0_20px_rgba(0,220,130,0.3)]'
+        >
+          <span className='font-mono'>Back to Top</span>
+          <span className='transition-transform duration-300 group-hover:translate-x-1'>→</span>
+        </Link>
+      </main>
     </div>
   )
 }
-
-export default Error
