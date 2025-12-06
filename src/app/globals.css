@@ -20,3 +20,9 @@ body {
   /* Webkit対応 */
   -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
 }
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
