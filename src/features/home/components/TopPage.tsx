@@ -32,16 +32,11 @@ const TopPage = ({ articleList }: Props) => {
       <section className='relative h-[60vh] flex flex-col justify-center items-center text-center px-5 overflow-hidden'>
         <div className='absolute inset-0 hero-grid-bg -z-10' />
 
-        <h1 className='text-4xl md:text-6xl font-extrabold leading-tight mb-5 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent'>
+        <h1 className='text-4xl md:text-6xl font-extrabold leading-tight mb-10 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent'>
           Engineering
           <br />
           the Modern Web.
         </h1>
-        <p className='text-lg text-sub mb-10 max-w-[600px]'>
-          フロントエンド・バックエンド・クラウド
-          <br className='md:hidden' />
-          のナレッジ集約サイト
-        </p>
 
         <div className='flex items-center bg-[#252830] py-3 px-6 rounded-full border border-border w-full max-w-[500px] shadow-2xl transition-all duration-300 focus-within:border-accent focus-within:shadow-[0_0_15px_rgba(0,220,130,0.4)]'>
           <form onSubmit={onSearchSubmit} className='flex-1 flex items-center'>

@@ -41,7 +41,6 @@ export const useArticleSearch = (initialArticles: Article[]) => {
     return sourceArticles.filter((article) => article.category === activeCategory)
   }, [activeCategory, sourceArticles])
 
-  // ハンドラ
   const handleCategorySelect = useCallback((category: string) => {
     setActiveCategory(category)
   }, [])

@@ -33,5 +33,4 @@ const ArticleCard = memo(({ article }: Props) => {
   )
 })
 
-ArticleCard.displayName = 'ArticleCard'
 export default ArticleCard
