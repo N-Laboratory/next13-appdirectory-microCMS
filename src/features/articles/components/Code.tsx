@@ -5,8 +5,13 @@ import SimpleBar from 'simplebar-react'
 import 'simplebar-react/dist/simplebar.min.css'
 import { isMobile } from 'react-device-detect'
 
+type HTMLAttributes = React.HTMLAttributes<HTMLPreElement>
+
 type Props = {
-  props: Record<string, string> & { style: Record<string, string> }
+  props: HTMLAttributes & {
+    className?: string
+    [key: string]: any
+  }
   jsx: string | JSX.Element | JSX.Element[]
 }
 

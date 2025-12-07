@@ -4,6 +4,7 @@
 
 :root {
   --foreground-rgb: 226, 232, 240;
+  --font-mono: 'Fira Code', monospace;
 }
 
 body {

@@ -1,133 +1,69 @@
-import Image from 'next/image'
-import { getArticle, getArticleList } from '@/libs/microcms/client'
-import parse, {
-  domToReact,
-  HTMLReactParserOptions,
-  Element,
-  attributesToProps,
-} from 'html-react-parser'
-import styles from './page.module.css'
-import { htmlspecialchars } from '@/features/common/sanitize'
-import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Code from '@/features/articles/components/Code'
+import type { Metadata } from 'next'
+import { getArticle, getArticleList } from '@/libs/microcms/client'
+import { htmlspecialchars } from '@/features/common/sanitize'
+import { ArticleHeader } from '@/features/articles/components/ArticleHeader'
+import { ArticleBody } from '@/features/articles/components/ArticleBody'
+
+type Props = {
+  params: { id: string }
+}
 
 // Dynamic Route使用時にSSGでビルドする
 export async function generateStaticParams() {
-  const response = await getArticleList('id')
-  const articleList = response?.contents
+  try {
+    const response = await getArticleList('id')
+    const articleList = response?.contents
 
-  return !articleList
-    ? [{ id: '0' }]
-    : articleList.map((article) => ({
-        id: article.id,
-      }))
+    if (!articleList || articleList.length === 0) {
+      return [{ id: '0' }]
+    }
+
+    return articleList.map((article) => ({
+      id: article.id,
+    }))
+  } catch (error) {
+    return []
+  }
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  let hasError = false
-  const article = await getArticle(htmlspecialchars(params.id)).catch(() => {
-    hasError = true
-  })
-  if (hasError || !article) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  try {
+    const article = await getArticle(htmlspecialchars(params.id))
+    if (!article) throw new Error('Not Found')
+
+    return {
+      title: `${article.title} | N-LAB`,
+      description: article.overview,
+      alternates: {
+        canonical: `https://n-laboratory.jp/articles/${article.id}`,
+      },
+    }
+  } catch {
     return {
       title: 'Not Found | N-LAB',
       description: '記事が見つかりません',
     }
   }
-  return {
-    title: `${article.title} | N-LAB`,
-    description: article.overview,
-    alternates: {
-      canonical: `https://n-laboratory.jp/articles/${article.id}`,
-    },
-  }
 }
 
-// microCMSから取得したHTMLをJSXに変換する際にtailwindのスタイルを適用する
-const replace: HTMLReactParserOptions = {
-  replace: (domNode) => {
-    if (domNode instanceof Element && domNode.attribs) {
-      const props = attributesToProps(domNode.attribs)
-      if (domNode.name === 'pre') {
-        return <Code props={props} jsx={domToReact(domNode.children)} />
-      }
-      if (domNode.name === 'h1') {
-        return (
-          <h1
-            className={`${styles.title} pb-1.5 mt-1 mb-4 text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6`}
-            {...props}
-          >
-            {domToReact(domNode.children)}
-          </h1>
-        )
-      }
-      if (domNode.name === 'h2') {
-        return (
-          <h2
-            className={`${styles.overview} font-normal mb-2 text-xl font-semibold text-gray-800 sm:text-2xl md:mb-4`}
-            {...props}
-          >
-            {domToReact(domNode.children)}
-          </h2>
-        )
-      }
-      if (domNode.name === 'ul') {
-        return (
-          <ul className={`${styles.listTriangle} list-inside sm:text-lg`} {...props}>
-            {domToReact(domNode.children)}
-          </ul>
-        )
-      }
-      if (domNode.name === 'ol') {
-        return (
-          <ol className={`${styles.order} list-inside sm:text-lg`} {...props}>
-            {domToReact(domNode.children)}
-          </ol>
-        )
-      }
-      if (domNode.name === 'a') {
-        return (
-          <a className={`${styles.linkColor} ${styles.linkWord}`} {...props}>
-            {domToReact(domNode.children)}
-          </a>
-        )
-      }
-      if (domNode.name === 'img') {
-        return (
-          <span className='relative block'>
-            <Image
-              src={props.src}
-              alt={props.alt}
-              className={`${styles.image} pt-3`}
-              fill
-              priority
-              sizes='(max-width: 768px) 100vw'
-              {...props}
-            />
-          </span>
-        )
-      }
-    }
-  },
-}
+export default async function ArticlePage({ params }: Props) {
+  const article = await getArticle(htmlspecialchars(params.id)).catch(() => null)
 
-const Articles = async ({ params }: { params: { id: string } }) => {
-  const article = await getArticle(htmlspecialchars(params.id)).catch(() => {
-    notFound()
-  })
   if (!article) {
-    // notFound関数をコールするとnot-found.tsxが呼び出される
     notFound()
   }
 
   return (
-    <div className='bg-white flex-grow'>
-      <div className={`${styles.pageWidth} mx-auto px-4 md:px-8 leading-7`}>
-        {article.detail ? parse(article.detail, replace) : ''}
-      </div>
+    <div className='min-h-screen bg-[#0f1014] text-[#e2e8f0] font-sans selection:bg-[#00DC82] selection:text-white'>
+      <main>
+        <ArticleHeader
+          title={article.title}
+          dateString={article.publishedAt || article.createdAt}
+        />
+
+        {article.detail && <ArticleBody content={article.detail} />}
+      </main>
     </div>
   )
 }
-
-export default Articles
