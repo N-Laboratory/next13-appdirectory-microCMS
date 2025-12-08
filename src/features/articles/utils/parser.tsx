@@ -12,9 +12,17 @@ import Code from '@/features/articles/components/Code'
 const stylesToRemove = [
   'background-color:#ffffff',
   'background-color:#f3f2f2',
+  'background-color:#f2f2f2',
+  'background-color:#dddddd',
   'color: rgb(0, 0, 0)',
   'color:#000000',
   'color:#242b34',
+]
+
+const fileNameStyles = [
+  'background-color:#f0f0f0',
+  'background-color:#f2f2f2',
+  'background-color:#dddddd',
 ]
 
 /**
@@ -31,7 +39,7 @@ const sanitizeNodeAttributes = (node: Element) => {
   }
 
   // ファイル名表示のような特定のスタイルを置換
-  if (isTextElement && style?.includes('background-color:#f0f0f0')) {
+  if (isTextElement && fileNameStyles.some((s) => style?.includes(s))) {
     node.attribs.style =
       'font-family: var(--font-mono); background: rgba(255, 255, 255, 0.05); padding: 2px 6px; border-radius: 4px; color: #e2e8f0; font-size: 0.85em;'
   }
