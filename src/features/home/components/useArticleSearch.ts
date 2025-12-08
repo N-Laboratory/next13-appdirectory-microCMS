@@ -29,11 +29,22 @@ export const useArticleSearch = (initialArticles: Article[]) => {
   }, [searchKeyword, data, initialArticles])
 
   const categories = useMemo(() => {
-    const uniqueCats = Array.from(
-      new Set(sourceArticles.map((a) => a.category).filter(Boolean) as string[]),
-    )
-    uniqueCats.sort((a, b) => (a === 'Others' ? 1 : b === 'Others' ? -1 : 0))
-    return ['All', ...uniqueCats]
+    const categorySet = new Set<string>()
+
+    sourceArticles.forEach((article) => {
+      if (article.category) {
+        categorySet.add(article.category)
+      }
+    })
+
+    const sortedCategories = Array.from(categorySet).sort((a, b) => {
+      if (a === 'Others') return 1
+      if (b === 'Others') return -1
+
+      return a.localeCompare(b, 'ja')
+    })
+
+    return ['All', ...sortedCategories]
   }, [sourceArticles])
 
   const displayedArticles = useMemo(() => {
