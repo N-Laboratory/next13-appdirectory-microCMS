@@ -5,7 +5,7 @@ export const metadata = {
   description: 'ページが見つかりません。',
 }
 
-export default function NotFound() {
+export default function NonexistentPage() {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#0f1014] text-[#e2e8f0] font-sans'>
       <div className='absolute inset-0 hero-grid-bg -z-10' />
