@@ -2,13 +2,7 @@
 
 import Link from 'next/link'
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#0f1014] text-[#e2e8f0] font-sans'>
       <div className='absolute inset-0 hero-grid-bg -z-10' />
