@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-export default function Error({ error, reset }: { error: Error; reset: () => void }) {
+export default function Error() {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-[#0f1014] text-[#e2e8f0] font-sans'>
       <div className='absolute inset-0 hero-grid-bg -z-10' />
@@ -22,14 +22,6 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
         </p>
 
         <div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
-          <button
-            onClick={() => reset()}
-            className='group inline-flex items-center gap-2 px-8 py-3 rounded-full border border-[#00DC82] bg-[#00DC82]/10 text-[#00DC82] font-semibold transition-all duration-300 hover:bg-[#00DC82] hover:text-[#0f1014] hover:shadow-[0_0_20px_rgba(0,220,130,0.5)] cursor-pointer'
-          >
-            <span className='font-mono'>Try Again</span>
-            <span className='transition-transform duration-300 group-hover:rotate-180'>↻</span>
-          </button>
-
           <Link
             href='/'
             className='group inline-flex items-center gap-3 px-8 py-3 rounded-full border border-[#2d3748] bg-white/5 text-[#e2e8f0] font-semibold transition-all duration-300 hover:border-white hover:bg-white/10'
