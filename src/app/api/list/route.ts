@@ -13,8 +13,12 @@ const userSchema = z.object({
   keyword: z.string(),
 })
 
+type RequestBody = {
+  keyword: string
+}
+
 export const POST = async (request: NextRequest) => {
-  const body = await request.json()
+  const body = (await request.json()) as RequestBody
   const result = userSchema.safeParse(body)
 
   if (!result.success) {

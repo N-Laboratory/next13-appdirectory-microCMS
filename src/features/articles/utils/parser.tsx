@@ -147,8 +147,8 @@ export const articleParseOptions: HTMLReactParserOptions = {
         return (
           <span className='relative block my-8 w-full aspect-video'>
             <Image
-              src={props.src as string}
-              alt={(props.alt as string) || ''}
+              src={props.src}
+              alt={props.alt || ''}
               className='rounded-lg border border-[#2d3748] object-cover'
               fill
               sizes='(max-width: 768px) 100vw, 800px'

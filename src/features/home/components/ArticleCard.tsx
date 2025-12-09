@@ -32,5 +32,6 @@ const ArticleCard = memo(({ article }: Props) => {
     </Link>
   )
 })
+ArticleCard.displayName = 'ArticleCard'
 
 export default ArticleCard

@@ -4,8 +4,10 @@ import axios from 'axios'
 import { Article } from '@/types'
 import { ArticleListResponse } from '@/app/api/list/route'
 
-const fetcher = async (url: string, keyword: string) =>
-  await axios.post(url, { keyword }).then((res) => res.data)
+const fetcher = async (url: string, keyword: string): Promise<ArticleListResponse> => {
+  const { data } = await axios.post<ArticleListResponse>(url, { keyword })
+  return data
+}
 
 export const useArticleSearch = (initialArticles: Article[]) => {
   const [activeCategory, setActiveCategory] = useState<string>('All')

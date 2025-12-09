@@ -10,7 +10,6 @@ type HTMLAttributes = React.HTMLAttributes<HTMLPreElement>
 type Props = {
   props: HTMLAttributes & {
     className?: string
-    [key: string]: any
   }
   jsx: string | JSX.Element | JSX.Element[]
 }
