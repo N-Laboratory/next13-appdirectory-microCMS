@@ -51,7 +51,7 @@ export const useArticleSearch = (initialArticles: Article[]) => {
 
   const displayedArticles = useMemo(() => {
     if (activeCategory === 'All') return sourceArticles
-    return sourceArticles.filter((article) => article.category === activeCategory)
+    return sourceArticles.filter(article => article.category === activeCategory)
   }, [activeCategory, sourceArticles])
 
   const handleCategorySelect = useCallback((category: string) => {

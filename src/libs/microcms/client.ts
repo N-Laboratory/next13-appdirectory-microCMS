@@ -28,8 +28,8 @@ export const client = createClient({
 export const getArticle = async (id: string) => {
   const article = await client
     .getListDetail<Article>({ endpoint: 'article', contentId: id })
-    .then((res) => res)
-    .catch((err) => console.error(err))
+    .then(res => res)
+    .catch(err => console.error(err))
   return article
 }
 
@@ -45,7 +45,7 @@ export const getArticleList = async (filedNames?: string, keyword?: string) => {
         orders: '-publishedAt',
       } as CustomMicroCMSQueries,
     })
-    .then((res) => res)
+    .then(res => res)
     .catch((err) => {
       console.error(err)
     })

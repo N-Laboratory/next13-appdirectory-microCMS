@@ -23,7 +23,7 @@ export async function generateStaticParams() {
       id: article.id,
     }))
   }
-  catch (error) {
+  catch {
     return []
   }
 }
