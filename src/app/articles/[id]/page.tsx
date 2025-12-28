@@ -6,7 +6,7 @@ import { ArticleHeader } from '@/features/articles/components/ArticleHeader'
 import { ArticleBody } from '@/features/articles/components/ArticleBody'
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 // Dynamic Route使用時にSSGでビルドする
@@ -19,16 +19,20 @@ export async function generateStaticParams() {
       return [{ id: '0' }]
     }
 
-    return articleList.map((article) => ({
+    return articleList.map(article => ({
       id: article.id,
     }))
-  } catch (error) {
+  }
+  catch (error) {
     return []
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props?.params
   try {
+    if (!params) throw new Error('Not Found')
+
     const article = await getArticle(htmlspecialchars(params.id))
     if (!article) throw new Error('Not Found')
 
@@ -39,7 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         canonical: `https://n-laboratory.jp/articles/${article.id}`,
       },
     }
-  } catch {
+  }
+  catch {
     return {
       title: 'Not Found | N-LAB',
       description: '記事が見つかりません',
@@ -47,7 +52,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function ArticlePage({ params }: Props) {
+export default async function ArticlePage(props: Props) {
+  const params = await props?.params
+  if (!params) {
+    notFound()
+  }
+
   const article = await getArticle(htmlspecialchars(params.id)).catch(() => null)
 
   if (!article) {
@@ -55,7 +65,7 @@ export default async function ArticlePage({ params }: Props) {
   }
 
   return (
-    <div className='min-h-screen bg-[#0f1014] text-[#e2e8f0] font-sans selection:bg-[#00DC82] selection:text-white'>
+    <div className="min-h-screen bg-[#0f1014] text-[#e2e8f0] font-sans selection:bg-[#00DC82] selection:text-white">
       <main>
         <ArticleHeader
           title={article.title}

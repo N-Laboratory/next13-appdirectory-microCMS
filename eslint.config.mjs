@@ -16,7 +16,7 @@ const eslintConfig = defineConfig([
     'next-env.d.ts',
     '.vercel',
     'node_modules/',
-    'coverage/',,
+    'coverage/',
     '.env*.local',
     '.vscode/',
     '.DS_Store',
