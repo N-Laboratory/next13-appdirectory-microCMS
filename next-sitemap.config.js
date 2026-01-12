@@ -1,6 +1,5 @@
-import type { IConfig } from 'next-sitemap'
-
-const nextConfig: IConfig = {
+/** @type {import('next-sitemap').IConfig} */
+const nextConfig = {
   siteUrl: 'https://n-laboratory.jp/',
   generateRobotsTxt: true,
   sitemapSize: 7000,
