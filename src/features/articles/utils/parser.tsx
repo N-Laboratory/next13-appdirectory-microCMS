@@ -92,7 +92,7 @@ export const articleParseOptions: HTMLReactParserOptions = {
 
         return (
           <p className="text-base text-white leading-[1.9] mb-4" {...props}>
-            {domToReact(domNode.children)}
+            {domToReact(domNode.children as DOMNode[])}
           </p>
         )
 
@@ -144,15 +144,16 @@ export const articleParseOptions: HTMLReactParserOptions = {
         )
 
       case 'img':
+        if (typeof props.src !== 'string') return <></>
+
         return (
           <span className="relative block my-8 w-full aspect-video">
             <Image
               src={props.src}
-              alt={props.alt || ''}
+              alt={typeof props.alt === 'string' ? props.alt : ''}
               className="rounded-lg border border-[#2d3748] object-cover"
               fill
               sizes="(max-width: 768px) 100vw, 800px"
-              {...props}
             />
           </span>
         )
