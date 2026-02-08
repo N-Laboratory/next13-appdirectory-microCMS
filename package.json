@@ -18,11 +18,10 @@
     "axios": "^1.4.0",
     "clsx": "^2.1.1",
     "eslint": "^9.39.2",
-    "eslint-config-next": "16.1.1",
     "html-react-parser": "^5.2.11",
     "lucide-react": "^0.555.0",
     "microcms-js-sdk": "^2.5.0",
-    "next": "16.1.1",
+    "next": "^16.1.6",
     "next-sitemap": "^4.1.8",
     "react": "19.2.3",
     "react-device-detect": "^2.2.3",
@@ -31,15 +30,16 @@
     "simplebar-react": "^3.2.4",
     "swr": "^2.3.8",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.1.6",
-    "typescript-eslint": "^8.52.0",
+    "typescript": "^5.9.3",
     "vercel": "^31.0.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^5.7.0",
+    "@stylistic/eslint-plugin": "^5.7.1",
     "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.26"
+    "eslint-config-next": "^16.1.6",
+    "postcss": "^8.4.26",
+    "typescript-eslint": "^8.54.0"
   },
   "engines": {
     "node": "24.10.1"
