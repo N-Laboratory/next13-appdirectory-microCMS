@@ -11,6 +11,7 @@
     "format": "eslint . --fix"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^24.10.1",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
@@ -29,14 +30,13 @@
     "server-only": "^0.0.1",
     "simplebar-react": "^3.2.4",
     "swr": "^2.3.8",
-    "tailwindcss": "^3.3.3",
+    "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
     "vercel": "^31.0.3",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.9.0",
-    "autoprefixer": "^10.4.14",
     "eslint-config-next": "^16.1.6",
     "postcss": "^8.4.26",
     "typescript-eslint": "^8.56.1"

@@ -68,7 +68,7 @@ export const articleParseOptions: HTMLReactParserOptions = {
       case 'h2':
         return (
           <h2
-            className="text-2xl font-bold mt-[10px] mb-[25px] pb-[15px] border-b border-[#2d3748] text-white flex items-center before:content-['#'] before:text-[#00DC82] before:mr-3 before:font-mono before:font-normal"
+            className="text-2xl font-bold mt-[10px] mb-[25px] pb-[15px] border-b border-border text-white flex items-center before:content-['#'] before:text-[#00DC82] before:mr-3 before:font-mono before:font-normal"
             {...props}
           >
             {children}
@@ -125,7 +125,7 @@ export const articleParseOptions: HTMLReactParserOptions = {
 
       case 'pre':
         return (
-          <div className="bg-[#0d0e11] p-[15px] rounded-lg overflow-x-auto border border-[#2d3748] font-mono text-sm leading-relaxed relative my-2">
+          <div className="bg-[#0d0e11] p-[15px] rounded-lg overflow-x-auto border border-border font-mono text-sm leading-relaxed relative my-2">
             <Code
               props={{ ...props, className: `${props.className || ''} text-white` }}
               jsx={children}
@@ -151,7 +151,7 @@ export const articleParseOptions: HTMLReactParserOptions = {
             <Image
               src={props.src}
               alt={typeof props.alt === 'string' ? props.alt : ''}
-              className="rounded-lg border border-[#2d3748] object-cover"
+              className="rounded-lg border border-border object-cover"
               fill
               sizes="(max-width: 768px) 100vw, 800px"
             />
@@ -162,7 +162,7 @@ export const articleParseOptions: HTMLReactParserOptions = {
         // ファイル名クラスの特別処理
         if (domNode.attribs.class?.includes('filename')) {
           return (
-            <span className="inline-block font-mono text-xs text-white bg-[#2d3748] px-3 py-1 rounded-t-md ml-2.5 -mb-[1px] relative z-10">
+            <span className="inline-block font-mono text-xs text-white bg-border px-3 py-1 rounded-t-md ml-2.5 -mb-px relative z-10">
               {children}
             </span>
           )

@@ -65,7 +65,7 @@ export default async function ArticlePage(props: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f1014] text-[#e2e8f0] font-sans selection:bg-[#00DC82] selection:text-white">
+    <div className="min-h-screen bg-background text-[#e2e8f0] font-sans selection:bg-[#00DC82] selection:text-white">
       <main>
         <ArticleHeader
           title={article.title}

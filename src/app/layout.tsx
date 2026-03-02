@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ja" className={`${inter.variable} ${firaCode.variable}`}>
       <body className="antialiased bg-background text-slate-200 font-sans">
-        <header className="fixed top-0 w-full h-[70px] flex items-center justify-between px-[5%] bg-[#0f1014]/80 backdrop-blur-md border-b border-white/5 z-50">
+        <header className="fixed top-0 w-full h-[70px] flex items-center justify-between px-[5%] bg-background/80 backdrop-blur-md border-b border-white/5 z-50">
           <div className="text-2xl font-extrabold tracking-tighter">
             <Link prefetch={false} href="/">
               N-LAB

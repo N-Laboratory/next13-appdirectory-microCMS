@@ -13,13 +13,13 @@ const ArticleCard = memo(({ article }: Props) => {
       className="group relative bg-card border border-border rounded-xl p-6 flex flex-col h-full transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:shadow-[0_10px_40px_-10px_rgba(0,220,130,0.4)]"
     >
       <div className="flex justify-between items-center mb-4">
-        <span className="font-mono text-xs px-2 py-1 rounded bg-[#2d3748] text-accent tracking-wider">
+        <span className="font-mono text-xs px-2 py-1 rounded-sm bg-border text-accent tracking-wider">
           {article.category}
         </span>
         <span className="font-mono text-xs text-slate-500">{article.createdDate}</span>
       </div>
 
-      <h2 className="text-xl font-bold mb-3 leading-snug flex-grow group-hover:text-white transition-colors">
+      <h2 className="text-xl font-bold mb-3 leading-snug grow group-hover:text-white transition-colors">
         {article.title}
       </h2>
 

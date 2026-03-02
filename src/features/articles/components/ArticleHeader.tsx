@@ -40,12 +40,12 @@ export const ArticleHeader = ({ title, dateString }: Props) => {
       <div className="absolute inset-0 -z-10" style={HERO_BACKGROUND_STYLE} />
 
       <div className="w-full max-w-[900px] flex flex-col items-center">
-        <h1 className="text-[1.8rem] md:text-[2.0rem] font-extrabold text-justify leading-[1.2] mb-5 max-w-[900px] bg-clip-text text-transparent bg-gradient-to-r from-white to-[#94a3b8]">
+        <h1 className="text-[1.8rem] md:text-[2.0rem] font-extrabold text-justify leading-[1.2] mb-5 max-w-[900px] bg-clip-text text-transparent bg-linear-to-r from-white to-sub">
           {title}
         </h1>
 
         <div className="w-full flex justify-end items-center gap-4 mb-6 mr-10">
-          <span className="font-mono text-sl text-[#94a3b8]">
+          <span className="font-mono text-sl text-sub">
             投稿日：
             {formatDate(dateString)}
           </span>

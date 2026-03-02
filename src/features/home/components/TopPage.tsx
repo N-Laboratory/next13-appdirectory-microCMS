@@ -32,7 +32,7 @@ const TopPage = ({ articleList }: Props) => {
       <section className="relative h-[60vh] flex flex-col justify-center items-center text-center px-5 overflow-hidden">
         <div className="absolute inset-0 hero-grid-bg -z-10" />
 
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-10 bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-10 bg-linear-to-r from-white to-slate-400 bg-clip-text text-transparent">
           Engineering
           <br />
           the Modern Web.
@@ -44,7 +44,7 @@ const TopPage = ({ articleList }: Props) => {
               name="keyword"
               type="text"
               placeholder="キーワードを入力（例: Nuxt 3, AWS...）"
-              className="bg-transparent border-none text-white flex-1 text-base outline-none placeholder:text-slate-600"
+              className="bg-transparent border-none text-white flex-1 text-base outline-hidden placeholder:text-slate-600"
             />
             <button type="submit" className="text-sub ml-3" disabled={isLoading}>
               {isLoading ? '...' : '🔍'}
@@ -74,7 +74,7 @@ const TopPage = ({ articleList }: Props) => {
         <div
           className={clsx(
             'relative pr-4',
-            displayedArticles.length > 3 && 'max-h-[40rem] overflow-y-auto',
+            displayedArticles.length > 3 && 'max-h-160 overflow-y-auto',
           )}
         >
           {isLoading
