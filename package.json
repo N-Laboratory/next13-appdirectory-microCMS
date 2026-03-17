@@ -28,7 +28,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "19.2.3",
     "server-only": "^0.0.1",
-    "simplebar-react": "^3.2.4",
+    "simplebar-react": "^3.3.2",
     "swr": "^2.3.8",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
