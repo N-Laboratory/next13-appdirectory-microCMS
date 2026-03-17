@@ -67,18 +67,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 
 export const viewport = {
-  themeColor: [
-    {
-      title: 'N-Laboratory | Engineering the Modern Web',
-
-      description:
-        'Next.jsやNuxt.js、Spring BootなどのフレームワークやAWSを中心とした技術のナレッジを発信するサイトです',
-
-      icons: {
-        icon: '/favicon.ico',
-        shortcut: '/favicon.ico',
-        apple: '/favicon.ico',
-      },
-    },
-  ],
+  themeColor: '#000000',
 }
+
