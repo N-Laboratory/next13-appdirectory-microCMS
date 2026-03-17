@@ -16,7 +16,7 @@
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vercel/analytics": "^1.0.1",
-    "axios": "^1.4.0",
+    "axios": "^1.13.6",
     "clsx": "^2.1.1",
     "eslint": "^9.39.3",
     "html-react-parser": "^5.2.11",
@@ -32,7 +32,7 @@
     "swr": "^2.3.8",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
-    "vercel": "^31.0.3",
+    "vercel": "^50.32.5",
     "zod": "^3.21.4"
   },
   "devDependencies": {
