@@ -13,7 +13,6 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^25.5.0",
-    "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "@vercel/analytics": "^2.0.1",
     "axios": "^1.13.6",
@@ -37,15 +36,12 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.9.0",
+    "@types/react": "^19.2.14",
     "eslint-config-next": "^16.1.7",
     "postcss": "^8.5.8",
     "typescript-eslint": "^8.56.1"
   },
   "engines": {
     "node": "24.10.1"
-  },
-  "overrides": {
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3"
   }
 }
