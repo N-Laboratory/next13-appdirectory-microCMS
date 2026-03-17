@@ -33,7 +33,7 @@
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
     "vercel": "^50.32.5",
-    "zod": "^3.21.4"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.9.0",
