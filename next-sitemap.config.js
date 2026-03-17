@@ -5,4 +5,4 @@ const nextConfig = {
   sitemapSize: 7000,
 }
 
-export default nextConfig
+module.exports = nextConfig
