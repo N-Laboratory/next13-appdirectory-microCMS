@@ -52,11 +52,10 @@ http://localhost:3000
 
 
 ## Demo
-* 記事一覧
-<img src="https://user-images.githubusercontent.com/42198184/236676267-6985a216-7d7c-4913-a617-f3bfca127521.gif">
-
 * 記事検索
-<img src="https://user-images.githubusercontent.com/42198184/236676291-4a529a3d-127e-4015-99aa-0c63d154b650.gif">
 
-* 記事詳細
-<img src="https://user-images.githubusercontent.com/42198184/236676293-1c76f008-88d0-44db-a0a7-3ecfbcf05dc2.gif">
+<img src="https://github.com/user-attachments/assets/cc7e2f82-ac28-4e31-a081-8c822cc7c358" width="1000" height="600">
+
+* 記事閲覧
+
+<img src="https://github.com/user-attachments/assets/56fdd9b6-8c19-45ca-8949-c51cdc7fcb4d" width="1000" height="600">
