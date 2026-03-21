@@ -1,4 +1,4 @@
-<h1 align="center">Next 13 + app directory + microCMS</h1>
+<h1 align="center">Next.js+ microCMS</h1>
 <p align="center">
   <img src="https://img.shields.io/badge/-Typescript-00bfff.svg?logo=typescript&style=flat">
   <img src="https://img.shields.io/badge/-Next.js-000000.svg?logo=next.js&style=flat">
@@ -19,12 +19,12 @@
 
 Next.jsの学習用としてこのプロジェクトを作成しました。プロジェクトの構成としては以下になります。
 
-Next 13 + app directory + microCMS + TailWind CSS
+Next.js + directory + microCMS + TailWind CSS
 
 このプロジェクトでは以下の機能を実装しています。
-* microCMSに投稿した記事の一覧取得
 * microCMSに投稿した記事の検索
-* microCMSに投稿した記事の詳細取得
+* microCMSに投稿した記事のカテゴリ絞り込み
+* microCMSに投稿した記事の内容取得
 
 
 ## Usage
