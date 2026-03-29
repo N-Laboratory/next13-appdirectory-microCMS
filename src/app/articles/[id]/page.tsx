@@ -5,11 +5,12 @@ import { htmlspecialchars } from '@/features/common/sanitize'
 import { ArticleHeader } from '@/features/articles/components/ArticleHeader'
 import { ArticleBody } from '@/features/articles/components/ArticleBody'
 
+export const revalidate = 3600
+
 type Props = {
   params: Promise<{ id: string }>
 }
 
-// Dynamic Route使用時にSSGでビルドする
 export async function generateStaticParams() {
   try {
     const response = await getArticleList('id')
@@ -47,7 +48,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   catch {
     return {
       title: 'Not Found | N-LAB',
-      description: '記事が見つかりません',
+      description: '記事が見つかりませんでした。',
     }
   }
 }

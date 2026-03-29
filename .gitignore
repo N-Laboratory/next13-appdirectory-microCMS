@@ -40,3 +40,8 @@ next-env.d.ts
 
 # serena
 /.serena/
+
+# codex
+/.codex/
+
+skills-lock.json

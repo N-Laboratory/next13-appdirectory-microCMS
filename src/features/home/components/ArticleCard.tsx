@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import Link from 'next/link'
 import { Article } from '@/types'
 
@@ -6,7 +5,7 @@ type Props = {
   article: Article
 }
 
-const ArticleCard = memo(({ article }: Props) => {
+const ArticleCard = ({ article }: Props) => {
   return (
     <Link
       href={`/articles/${encodeURIComponent(article.id)}`}
@@ -26,12 +25,11 @@ const ArticleCard = memo(({ article }: Props) => {
       <p className="text-sm text-sub mb-5 leading-relaxed line-clamp-3">{article.overview}</p>
 
       <div className="flex items-center text-sm font-semibold text-accent mt-auto">
-        Read Article
+        記事を読む
         <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
       </div>
     </Link>
   )
-})
-ArticleCard.displayName = 'ArticleCard'
+}
 
 export default ArticleCard

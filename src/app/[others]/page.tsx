@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const metadata = {
   title: 'Not Found | N-LAB',
-  description: 'ページが見つかりません。',
+  description: 'ページが見つかりませんでした。',
 }
 
 export default function NonexistentPage() {
@@ -14,18 +14,20 @@ export default function NonexistentPage() {
           404
         </h1>
 
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#e2e8f0]">Page Not Found.</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#e2e8f0]">
+          ページが見つかりません
+        </h2>
         <p className="text-base md:text-lg text-sub mb-12 max-w-md mx-auto leading-relaxed">
-          お探しのページは削除されたか、
+          お探しのページは見つかりませんでした。
           <br className="hidden md:block" />
-          URLが変更された可能性があります。
+          URL が変更されたか、ページが削除された可能性があります。
         </p>
 
         <Link
           href="/"
           className="group inline-flex items-center gap-3 px-8 py-3 rounded-full border border-border bg-white/5 text-[#e2e8f0] font-semibold transition-all duration-300 hover:border-[#00DC82] hover:bg-[#00DC82]/10 hover:text-[#00DC82] hover:shadow-[0_0_20px_rgba(0,220,130,0.3)]"
         >
-          <span className="font-mono">Back to Top</span>
+          <span className="font-mono">トップへ戻る</span>
           <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </Link>
       </main>

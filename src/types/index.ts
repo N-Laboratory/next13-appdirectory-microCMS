@@ -12,4 +12,6 @@ export type Article = {
   overview: string
   category: string
   createdDate: string
+  createdAt: string
+  publishedAt: string
 }

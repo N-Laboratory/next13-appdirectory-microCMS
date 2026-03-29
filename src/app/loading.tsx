@@ -9,9 +9,9 @@ export default function Loading() {
         </div>
 
         <p className="text-xl md:text-2xl font-semibold text-[#00DC82] mb-2 font-mono">
-          LOADING...
+          読み込み中...
         </p>
-        <p className="text-base text-sub">データを取得中です。少々お待ちください。</p>
+        <p className="text-base text-sub">データを読み込んでいます。少々お待ちください。</p>
       </main>
     </div>
   )
