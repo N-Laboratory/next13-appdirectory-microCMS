@@ -1,6 +1,8 @@
 .scrollArea {
-  --sb-track-color: #232e33 / 20%;
-  --sb-thumb-color: #3fd195;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-color: #3fd195 rgb(35 46 51 / 20%);
+  scrollbar-width: thin;
 }
 
 .code {
@@ -12,20 +14,16 @@
   color: #000000;
 }
 
-.scrollArea :global(.simplebar-track.simplebar-horizontal) {
+.scrollArea::-webkit-scrollbar {
   height: 9px;
-  background: var(--sb-track-color);
+}
+
+.scrollArea::-webkit-scrollbar-track {
+  background: rgb(35 46 51 / 20%);
   border-radius: 10px;
 }
 
-.scrollArea :global(.simplebar-track.simplebar-vertical) {
-  width: 9px;
-  background: var(--sb-track-color);
+.scrollArea::-webkit-scrollbar-thumb {
+  background: #3fd195;
   border-radius: 10px;
-}
-
-.scrollArea :global(.simplebar-scrollbar:before) {
-  background: var(--sb-thumb-color);
-  border-radius: 10px;
-  opacity: 1;
 }

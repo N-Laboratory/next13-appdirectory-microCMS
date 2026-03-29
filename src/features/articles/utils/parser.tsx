@@ -8,7 +8,6 @@ import {
 } from 'html-react-parser'
 import Code from '@/features/articles/components/Code'
 
-// 不要な背景色や特定の色指定を削除
 const stylesToRemove = [
   'background-color:#ffffff',
   'background-color:#f3f2f2',
@@ -25,9 +24,6 @@ const fileNameStyles = [
   'background-color:#dddddd',
 ]
 
-/**
- * HTML属性のスタイル調整を行うヘルパー関数
- */
 const sanitizeNodeAttributes = (node: Element) => {
   const { name, attribs } = node
 
@@ -38,22 +34,17 @@ const sanitizeNodeAttributes = (node: Element) => {
     node.attribs.style = ''
   }
 
-  // ファイル名表示のような特定のスタイルを置換
   if (isTextElement && fileNameStyles.some(s => style?.includes(s))) {
     node.attribs.style
       = 'font-family: var(--font-mono); background: rgba(255, 255, 255, 0.05); padding: 2px 6px; border-radius: 4px; color: #e2e8f0; font-size: 0.85em;'
   }
 
-  // リンクのスタイル置換
   if (name === 'a') {
     node.attribs.style
       = 'color: rgb(63 209 149); overflow-wrap: anywhere; word-break: normal; line-break: strict;'
   }
 }
 
-/**
- * html-react-parser用のオプション設定
- */
 export const articleParseOptions: HTMLReactParserOptions = {
   replace: (domNode) => {
     if (!(domNode instanceof Element && domNode.attribs)) return
@@ -63,7 +54,7 @@ export const articleParseOptions: HTMLReactParserOptions = {
 
     switch (domNode.name) {
       case 'h1':
-        return <></> // H1は別途表示するため除外
+        return <></>
 
       case 'h2':
         return (
@@ -85,7 +76,6 @@ export const articleParseOptions: HTMLReactParserOptions = {
       case 'p':
         domNode.children.forEach((childNode) => {
           if (childNode instanceof Element && childNode.attribs) {
-            // Tailwind CSSで上書きできない場合のスタイル上書き処理
             sanitizeNodeAttributes(childNode)
           }
         })
@@ -159,7 +149,6 @@ export const articleParseOptions: HTMLReactParserOptions = {
         )
 
       default:
-        // ファイル名クラスの特別処理
         if (domNode.attribs.class?.includes('filename')) {
           return (
             <span className="inline-block font-mono text-xs text-white bg-border px-3 py-1 rounded-t-md ml-2.5 -mb-px relative z-10">

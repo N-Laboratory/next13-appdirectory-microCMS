@@ -1,10 +1,12 @@
-import { getArticleList } from '@/libs/microcms/client'
 import { notFound } from 'next/navigation'
+import { getArticleList } from '@/libs/microcms/client'
 import TopPage from '@/features/home/components/TopPage'
+
+export const revalidate = 300
 
 export const metadata = {
   title: 'Home | N-LAB',
-  description: 'このウェブサイトは日々の業務を通じて学習したIT技術を備忘録も兼ねて掲載しています。',
+  description: '技術記事と実装メモを掲載している N-LAB のトップページです。',
 }
 
 const Home = async () => {

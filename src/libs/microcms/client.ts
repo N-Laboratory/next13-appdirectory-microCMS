@@ -1,16 +1,14 @@
 import 'server-only'
+import { cache } from 'react'
 import { createClient, MicroCMSQueries } from 'microcms-js-sdk'
-import { Article, ArticleList } from '@/types'
+import { Article } from '@/types'
 
-// vercel上でmicroCMSからデータフェッチした場合、なぜか最新のデータを取得できないので
-// URLにclearCacheを付加することで上記事象を解消する（ローカルでは最新のデータを取得できる）
-// 数日たつとvercel上でも最新のデータを取得できる（vercelのキャッシュが効いている？）
-// 以下のvercelが推奨するキャッシュ対策を実装したが変化はなし
-// https://nextjs.org/docs/app/building-your-application/data-fetching/caching
-// https://vercel.com/docs/concepts/edge-network/caching
-type CustomMicroCMSQueries = MicroCMSQueries & {
-  clearCache?: string
-}
+// microCMS への取得は Next.js の Data Cache と React.cache() を前提に管理する。
+// - 記事一覧は比較的短い間隔で再検証する
+// - 記事詳細は更新頻度が低い前提で長めにキャッシュする
+// - 同一リクエスト内の重複 fetch は React.cache() で抑制する
+const ARTICLE_LIST_REVALIDATE = 300
+const ARTICLE_DETAIL_REVALIDATE = 3600
 
 if (!process.env.SERVICE_DOMAIN) {
   throw new Error('SERVICE_DOMAIN is required')
@@ -25,29 +23,49 @@ export const client = createClient({
   apiKey: process.env.API_KEY,
 })
 
-export const getArticle = async (id: string) => {
-  const article = await client
-    .getListDetail<Article>({ endpoint: 'article', contentId: id })
-    .then(res => res)
-    .catch(err => console.error(err))
-  return article
-}
+export const getArticle = cache(async (id: string) => {
+  try {
+    return await client.getListDetail<Article>({
+      endpoint: 'article',
+      contentId: id,
+      customRequestInit: {
+        next: {
+          revalidate: ARTICLE_DETAIL_REVALIDATE,
+          tags: ['articles', `article:${id}`],
+        },
+      },
+    })
+  }
+  catch (error) {
+    console.error(error)
+    throw error
+  }
+})
 
-export const getArticleList = async (filedNames?: string, keyword?: string) => {
-  const articleList = await client
-    .get<ArticleList>({
+export const getArticleList = cache(async (fieldNames?: string, keyword?: string) => {
+  const normalizedKeyword = keyword?.trim()
+
+  try {
+    return await client.getList<Article>({
       endpoint: 'article',
       queries: {
-        ...(keyword && { q: keyword }),
+        ...(normalizedKeyword && { q: normalizedKeyword }),
         limit: 100,
-        clearCache: 'true',
-        fields: filedNames ?? '',
+        fields: fieldNames ?? '',
         orders: '-publishedAt',
-      } as CustomMicroCMSQueries,
+      } satisfies MicroCMSQueries,
+      customRequestInit: {
+        next: {
+          revalidate: normalizedKeyword ? 60 : ARTICLE_LIST_REVALIDATE,
+          tags: normalizedKeyword
+            ? ['articles', `article-search:${normalizedKeyword}`]
+            : ['articles'],
+        },
+      },
     })
-    .then(res => res)
-    .catch((err) => {
-      console.error(err)
-    })
-  return articleList
-}
+  }
+  catch (error) {
+    console.error(error)
+    throw error
+  }
+})

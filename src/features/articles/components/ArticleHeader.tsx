@@ -46,7 +46,8 @@ export const ArticleHeader = ({ title, dateString }: Props) => {
 
         <div className="w-full flex justify-end items-center gap-4 mb-6 mr-10">
           <span className="font-mono text-sl text-sub">
-            投稿日：
+            公開日:
+            {' '}
             {formatDate(dateString)}
           </span>
         </div>

@@ -17,45 +17,68 @@
   </a>
 </p>
 
-Next.jsの学習用としてこのプロジェクトを作成しました。プロジェクトの構成としては以下になります。
+Next.js App Router と microCMS を使った技術ブログプロジェクトです。  
+記事一覧、記事詳細、検索ページを備えたシンプルな構成で、Tailwind CSS を使って UI を実装しています。
 
-Next.js + directory + microCMS + TailWind CSS
+## Tech Stack
 
-このプロジェクトでは以下の機能を実装しています。
-* microCMSに投稿した記事の検索
-* microCMSに投稿した記事のカテゴリ絞り込み
-* microCMSに投稿した記事の内容取得
+- Next.js
+- React
+- TypeScript
+- microCMS
+- Tailwind CSS
+- ESLint
 
+## Features
 
-## Usage
+- microCMS から取得した記事一覧の表示
+- 記事詳細ページの表示
+- キーワード検索とカテゴリ絞り込み
+- sitemap / robots.txt の生成
 
-パッケージのインストール。
+## Setup
+
+依存パッケージをインストールします。
+
 ```bash
 npm ci
 ```
 
-プロジェクトのルート配下に「.env.local」を新規作成して、以下を追加します。
+プロジェクトルートに `.env.local` を作成し、microCMS の設定を追加します。
+
 ```bash
-# microCMSのAPIキーを記載します
-API_KEY=XXXXXXXXXXXXXXXXXX
-# microCMSのサービス名を記載します
-SERVICE_DOMAIN=hoge
+API_KEY=YOUR_MICROCMS_API_KEY
+SERVICE_DOMAIN=YOUR_MICROCMS_SERVICE_DOMAIN
 ```
 
-ローカルサーバーの起動。
+## Development
+
+ローカルサーバーを起動します。
+
 ```bash
 npm run dev
 ```
-サーバー起動後は以下のURLより、アプリの動作確認が可能です。
 
+起動後、以下の URL で確認できます。
+
+```text
 http://localhost:3000
+```
 
+## Build
+
+本番ビルドを作成します。
+
+```bash
+npm run build
+```
 
 ## Demo
-* 記事検索
+
+### 記事一覧
 
 <img src="https://github.com/user-attachments/assets/cc7e2f82-ac28-4e31-a081-8c822cc7c358" width="1000" height="600">
 
-* 記事閲覧
+### 記事詳細
 
 <img src="https://github.com/user-attachments/assets/56fdd9b6-8c19-45ca-8949-c51cdc7fcb4d" width="1000" height="600">
